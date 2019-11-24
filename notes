@@ -1,0 +1,31 @@
+
+# Datacamp tutorial page:
+https://www.datacamp.com/community/tutorials/xgboost-in-python
+
+# note (referance in Datacamp tutorial) on automatic handling of missing values in gxboost:
+https://github.com/dmlc/xgboost/issues/21
+
+# note (referance in Datacamp tutorial) on parameters of gxboost:
+https://xgboost.readthedocs.io/en/latest/parameter.html#general-parameters
+
+# Cambridgespark tutorial:
+https://cambridgespark.com/getting-started-with-xgboost/
+
+# feature scaling with xgboost (it's not necessary even given the regularisation, IF trees are used as the weak learners rather than regressions):
+https://stats.stackexchange.com/questions/353462/what-are-the-implications-of-scaling-the-features-to-xgboost
+
+# article on tuning hyper-parameters:
+https://towardsdatascience.com/a-conceptual-explanation-of-bayesian-model-based-hyperparameter-optimization-for-machine-learning-b8172278050f
+
+# article on tuning hyper-parameters:
+https://towardsdatascience.com/automated-machine-learning-hyperparameter-tuning-in-python-dfda59b72f8a
+
+# scikit-optimize examples:
+https://scikit-optimize.github.io/notebooks/sklearn-gridsearchcv-replacement.html
+
+# LightBGM info:
+https://lightgbm.readthedocs.io/en/latest/Python-API.html
+
+# xgboost and LightBGM examples:
+https://www.kaggle.com/nanomathias/bayesian-optimization-of-xgboost-lb-0-9769
+

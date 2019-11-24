@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)https://cambridgespark.com/getting-started-with-xgboost/ -->
+<html lang="en-GB" prefix="og: http://ogp.me/ns#" slick-uniqueid="3"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+	<!-- wp_head -->
+	<title>Getting started with XGBoost | Cambridge Spark</title>
+
+<!-- DO NOT COPY THIS SNIPPET! Start of Page Analytics Tracking for HubSpot WordPress plugin -->
+<script src="./Getting started with XGBoost _ Cambridge Spark_files/4132242.js" type="text/javascript" id="hs-script-loader"></script><script src="./Getting started with XGBoost _ Cambridge Spark_files/collectedforms.js" type="text/javascript" id="CollectedForms-4132242" crossorigin="anonymous" data-leadin-portal-id="4132242" data-leadin-env="prod" data-loader="hs-scriptloader" data-hsjs-portal="4132242" data-hsjs-env="prod"></script><script src="./Getting started with XGBoost _ Cambridge Spark_files/leadflows.js" type="text/javascript" id="LeadFlows-4132242" crossorigin="anonymous" data-leadin-portal-id="4132242" data-leadin-env="prod" data-loader="hs-scriptloader" data-hsjs-portal="4132242" data-hsjs-env="prod"></script><script src="./Getting started with XGBoost _ Cambridge Spark_files/conversations-embed.js" type="text/javascript" id="hubspot-messages-loader" data-loader="hs-scriptloader" data-hsjs-portal="4132242" data-hsjs-env="prod"></script><script src="./Getting started with XGBoost _ Cambridge Spark_files/4132242(1).js" type="text/javascript" id="hs-analytics"></script><script async="" src="./Getting started with XGBoost _ Cambridge Spark_files/qevents.js"></script><script type="text/javascript" async="" src="./Getting started with XGBoost _ Cambridge Spark_files/insight.min.js"></script><script src="./Getting started with XGBoost _ Cambridge Spark_files/309468679871011" async=""></script><script src="./Getting started with XGBoost _ Cambridge Spark_files/379460215805063" async=""></script><script id="facebook-jssdk" src="./Getting started with XGBoost _ Cambridge Spark_files/sdk.js"></script><script async="" src="./Getting started with XGBoost _ Cambridge Spark_files/fbevents.js"></script><script type="text/javascript" async="" src="./Getting started with XGBoost _ Cambridge Spark_files/linkid.js"></script><script async="" src="./Getting started with XGBoost _ Cambridge Spark_files/analytics.js"></script><script type="text/javascript">
+var _hsq = _hsq || [];
+_hsq.push(["setContentType", "blog-post"]);
+</script>
+<!-- DO NOT COPY THIS SNIPPET! End of Page Analytics Tracking for HubSpot WordPress plugin -->
+
+<!-- All in One SEO Pack 2.10.1 by Michael Torbert of Semper Fi Web Design[123,182] -->
+<meta name="description" content="What is XGBoost? XGBoost stands for Extreme Gradient Boosting, it is a performant machine learning library based on the paper Greedy Function Approximation: A">
+
+<meta name="keywords" content="tutorials">
+
+<link rel="canonical" href="https://cambridgespark.com/getting-started-with-xgboost/">
+<meta property="og:title" content="Getting started with XGBoost | Cambridge Spark">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://cambridgespark.com/getting-started-with-xgboost/">
+<meta property="og:image" content="https://i2.wp.com/cambridgespark.com/wp-content/uploads/2018/09/jantine-doornbos-711322-unsplash-e1537868790739.jpg?fit=1024%2C683&amp;ssl=1">
+<meta property="og:site_name" content="Cambridge Spark">
+<meta property="og:description" content="What is XGBoost? XGBoost stands for Extreme Gradient Boosting, it is a performant machine learning library based on the paper Greedy Function Approximation: A Gradient Boosting Machine, by Friedman. XGBoost implements a Gradient Boosting algorithm based on decision trees. The gradient boosting algorithm If you are already familiar with Random Forests, the Gradient Boosting algorithm implemented in XGBoost is also an ensemble of decision trees. Those trees are poor models individually, but when they are grouped they can be really performant. The difference between XGBoost and Random Forest lies in the way those trees are built and combined. Random Forest builds fully grown decision trees in parallel on subsamples of the data. Each tree is higly specialized to predict on its subsample and do not generalize well (high variance). By combining the predictions made by each individual tree, the Random Forest algorithm decreases variance and gives good performance. XGBoost on the other hand,">
+<meta property="article:tag" content="tutorials">
+<meta property="article:published_time" content="2018-09-12T11:25:11Z">
+<meta property="article:modified_time" content="2018-10-03T08:53:59Z">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Getting started with XGBoost | Cambridge Spark">
+<meta name="twitter:description" content="What is XGBoost? XGBoost stands for Extreme Gradient Boosting, it is a performant machine learning library based on the paper Greedy Function Approximation: A Gradient Boosting Machine, by Friedman. XGBoost implements a Gradient Boosting algorithm based on decision trees. The gradient boosting algorithm If you are already familiar with Random Forests, the Gradient Boosting algorithm implemented in XGBoost is also an ensemble of decision trees. Those trees are poor models individually, but when they are grouped they can be really performant. The difference between XGBoost and Random Forest lies in the way those trees are built and combined. Random Forest builds fully grown decision trees in parallel on subsamples of the data. Each tree is higly specialized to predict on its subsample and do not generalize well (high variance). By combining the predictions made by each individual tree, the Random Forest algorithm decreases variance and gives good performance. XGBoost on the other hand,">
+<meta name="twitter:image" content="https://i2.wp.com/cambridgespark.com/wp-content/uploads/2018/09/jantine-doornbos-711322-unsplash-e1537868790739.jpg?fit=1024%2C683&amp;ssl=1">
+<meta itemprop="image" content="https://i2.wp.com/cambridgespark.com/wp-content/uploads/2018/09/jantine-doornbos-711322-unsplash-e1537868790739.jpg?fit=1024%2C683&amp;ssl=1">
+<!-- /all in one seo pack -->
+<link rel="dns-prefetch" href="https://s0.wp.com/">
+<link rel="dns-prefetch" href="https://js.hs-scripts.com/">
+<link rel="dns-prefetch" href="https://secure.gravatar.com/">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link rel="alternate" type="application/rss+xml" title="Cambridge Spark » Feed" href="https://cambridgespark.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Cambridge Spark » Comments Feed" href="https://cambridgespark.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Cambridge Spark » Getting started with XGBoost Comments Feed" href="https://cambridgespark.com/getting-started-with-xgboost/feed/">
+<!-- This site uses the Google Analytics by MonsterInsights plugin v7.3.2 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+	var mi_version         = '7.3.2';
+	var mi_track_user      = true;
+	var mi_no_track_reason = '';
+	
+	var disableStr = 'ga-disable-UA-88271071-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+	
+	if ( mi_track_user ) {
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','__gaTracker');
+
+		__gaTracker('create', 'UA-88271071-1', 'auto');
+		__gaTracker('set', 'forceSSL', true);
+		__gaTracker('require', 'displayfeatures');
+		__gaTracker('require', 'linkid', 'linkid.js');
+		__gaTracker('send','pageview');
+	} else {
+		console.log( "" );
+		(function() {
+			/* https://developers.google.com/analytics/devguides/collection/analyticsjs/ */
+			var noopfn = function() {
+				return null;
+			};
+			var noopnullfn = function() {
+				return null;
+			};
+			var Tracker = function() {
+				return null;
+			};
+			var p = Tracker.prototype;
+			p.get = noopfn;
+			p.set = noopfn;
+			p.send = noopfn;
+			var __gaTracker = function() {
+				var len = arguments.length;
+				if ( len === 0 ) {
+					return;
+				}
+				var f = arguments[len-1];
+				if ( typeof f !== 'object' || f === null || typeof f.hitCallback !== 'function' ) {
+					console.log( 'Not running function __gaTracker(' + arguments[0] + " ....) because you are not being tracked. " + mi_no_track_reason );
+					return;
+				}
+				try {
+					f.hitCallback();
+				} catch (ex) {
+
+				}
+			};
+			__gaTracker.create = function() {
+				return new Tracker();
+			};
+			__gaTracker.getByName = noopnullfn;
+			__gaTracker.getAll = function() {
+				return [];
+			};
+			__gaTracker.remove = noopfn;
+			window['__gaTracker'] = __gaTracker;
+					})();
+		}
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+<link crossorigin="anonymous" rel="stylesheet" id="themify-google-fonts-css" href="./Getting started with XGBoost _ Cambridge Spark_files/css" type="text/css" media="all">
+<link rel="stylesheet" id="themify-common-css" href="./Getting started with XGBoost _ Cambridge Spark_files/themify.common.min.css" type="text/css" media="all">
+<meta name="builder-styles-css" content="builder-styles-css" id="builder-styles-css">
+<link rel="stylesheet" id="wp-block-library-css" href="./Getting started with XGBoost _ Cambridge Spark_files/style.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="wpcom-text-widget-styles-css" href="./Getting started with XGBoost _ Cambridge Spark_files/widget-text.css" type="text/css" media="all">
+<link rel="stylesheet" id="theme-style-css" href="./Getting started with XGBoost _ Cambridge Spark_files/style.min(1).css" type="text/css" media="all">
+<link rel="stylesheet" id="themify-media-queries-css" href="./Getting started with XGBoost _ Cambridge Spark_files/media-queries.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="ultra-header-css" href="./Getting started with XGBoost _ Cambridge Spark_files/header-top-bar.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="themify-customize-css" href="./Getting started with XGBoost _ Cambridge Spark_files/themify-customizer.css" type="text/css" media="all">
+<link rel="stylesheet" id="enlighter-local-css" href="./Getting started with XGBoost _ Cambridge Spark_files/EnlighterJS.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="jetpack_css-css" href="./Getting started with XGBoost _ Cambridge Spark_files/4866d48fb39d96466b18aa480619f131.css" type="text/css" media="all">
+<script type="text/javascript" src="./Getting started with XGBoost _ Cambridge Spark_files/6dda145606e1cac72e0d78cd835deb0e.js"></script>
+<script type="text/javascript" src="./Getting started with XGBoost _ Cambridge Spark_files/jquery-migrate.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var monsterinsights_frontend = {"js_events_tracking":"true","is_debug_mode":"false","download_extensions":"doc,exe,js,pdf,ppt,tgz,zip,xls","inbound_paths":"","home_url":"https:\/\/cambridgespark.com","track_download_as":"event","internal_label":"int","hash_tracking":"false"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Getting started with XGBoost _ Cambridge Spark_files/frontend.min.js"></script>
+<script type="text/javascript" src="./Getting started with XGBoost _ Cambridge Spark_files/postmessage.min.js"></script>
+<script type="text/javascript" src="./Getting started with XGBoost _ Cambridge Spark_files/jquery.jetpack-resize.min.js"></script>
+<script type="text/javascript" src="./Getting started with XGBoost _ Cambridge Spark_files/imagesloaded.min.js"></script>
+<script type="text/javascript" src="./Getting started with XGBoost _ Cambridge Spark_files/comment-reply.min.js"></script>
+<link rel="https://api.w.org/" href="https://cambridgespark.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://cambridgespark.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://cambridgespark.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="From Business Analyst to Data Scientist" href="https://cambridgespark.com/from-business-analyst-to-data-scientist/">
+<link rel="next" title="Past IMC student event: 22nd October 2018 – Introduction to Python Workshop –  UCL" href="https://cambridgespark.com/introduction-to-python-workshop-22nd-october-2018/">
+
+<link rel="shortlink" href="https://wp.me/pa0R0J-pZ">
+<link rel="alternate" type="application/json+oembed" href="https://cambridgespark.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcambridgespark.com%2Fgetting-started-with-xgboost%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://cambridgespark.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcambridgespark.com%2Fgetting-started-with-xgboost%2F&amp;format=xml">
+
+<link rel="dns-prefetch" href="https://widgets.wp.com/">
+<link rel="dns-prefetch" href="https://s0.wp.com/">
+<link rel="dns-prefetch" href="https://0.gravatar.com/">
+<link rel="dns-prefetch" href="https://1.gravatar.com/">
+<link rel="dns-prefetch" href="https://2.gravatar.com/">
+<link rel="dns-prefetch" href="https://jetpack.wordpress.com/">
+<link rel="dns-prefetch" href="https://s1.wp.com/">
+<link rel="dns-prefetch" href="https://s2.wp.com/">
+<link rel="dns-prefetch" href="https://public-api.wordpress.com/">
+<link rel="dns-prefetch" href="https://i0.wp.com/">
+<link rel="dns-prefetch" href="https://i1.wp.com/">
+<link rel="dns-prefetch" href="https://i2.wp.com/">
+<link rel="dns-prefetch" href="https://c0.wp.com/">
+<style type="text/css">img#wpstats{display:none}</style>
+
+
+
+<link href="https://cambridgespark.com/wp-content/uploads/2018/09/favicon.png" rel="shortcut icon"> 
+
+<link rel="stylesheet" href="./Getting started with XGBoost _ Cambridge Spark_files/bootstrap-grid.min.css">	<script type="text/javascript">
+		var tf_mobile_menu_trigger_point = 998;
+	</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<style>
+	@-webkit-keyframes themifyAnimatedBG {
+		0% { background-color: #10abff; }
+100% { background-color: #0fdfff; }
+50% { background-color: #0fffdb; }
+33.333333333333% { background-color: #0fffab; }
+
+	}
+	@keyframes themifyAnimatedBG {
+		0% { background-color: #10abff; }
+100% { background-color: #0fdfff; }
+50% { background-color: #0fffdb; }
+33.333333333333% { background-color: #0fffab; }
+
+	}
+	.themify_builder_row.animated-bg {
+		-webkit-animation: themifyAnimatedBG 20000ms infinite alternate;
+		animation: themifyAnimatedBG 20000ms infinite alternate;
+	}
+	</style>
+	<link rel="amphtml" href="https://cambridgespark.com/getting-started-with-xgboost/amp/"><link rel="icon" href="https://i1.wp.com/cambridgespark.com/wp-content/uploads/2018/08/cropped-favicon.png?fit=32%2C32&amp;ssl=1" sizes="32x32">
+<link rel="icon" href="https://i1.wp.com/cambridgespark.com/wp-content/uploads/2018/08/cropped-favicon.png?fit=192%2C192&amp;ssl=1" sizes="192x192">
+<link rel="apple-touch-icon-precomposed" href="https://i1.wp.com/cambridgespark.com/wp-content/uploads/2018/08/cropped-favicon.png?fit=180%2C180&amp;ssl=1">
+<meta name="msapplication-TileImage" content="https://i1.wp.com/cambridgespark.com/wp-content/uploads/2018/08/cropped-favicon.png?fit=270%2C270&amp;ssl=1">
+
+<link rel="stylesheet" type="text/css" id="gravatar-card-css" href="./Getting started with XGBoost _ Cambridge Spark_files/hovercard.min.css"><link rel="stylesheet" type="text/css" id="gravatar-card-services-css" href="./Getting started with XGBoost _ Cambridge Spark_files/services.min.css"><style type="text/css" id="hs-form-styleb85317b5-8170-42ee-866d-94bb03003e62_b9cde6ba-8b13-4aab-9a41-0bd425242a4b">.fn-date-picker.pika-single{z-index:9999;display:block;position:relative;color:#333;background:#fff;border:1px solid #ccc;border-bottom-color:#bbb;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;*zoom:1}.fn-date-picker.pika-single.is-hidden{display:none}.fn-date-picker.pika-single.is-bound{position:absolute;box-shadow:0 5px 15px -5px rgba(0,0,0,0.5)}.fn-date-picker.pika-single:before,.fn-date-picker.pika-single:after{content:" ";display:table}.fn-date-picker.pika-single:after{clear:both}.fn-date-picker .pika-lendar{float:left;width:240px;margin:8px}.fn-date-picker .pika-title{position:relative;text-align:center}.fn-date-picker .pika-title select{cursor:pointer;position:absolute;z-index:9998;margin:0;left:0;top:5px;filter:alpha(opacity=0);opacity:0}.fn-date-picker .pika-label{display:inline-block;*display:inline;position:relative;z-index:9999;overflow:hidden;margin:0;padding:5px 3px;font-size:14px;line-height:20px;font-weight:bold;background-color:#fff}.fn-date-picker .pika-prev,.fn-date-picker .pika-next{display:block;cursor:pointer;position:relative;outline:none;border:0;padding:0;width:20px;height:30px;text-indent:20px;white-space:nowrap;overflow:hidden;background-color:transparent;background-position:center center;background-repeat:no-repeat;background-size:75% 75%;opacity:0.5;*position:absolute;*top:0}.fn-date-picker .pika-prev:hover,.fn-date-picker .pika-next:hover{opacity:1}.fn-date-picker .pika-prev.is-disabled,.fn-date-picker .pika-next.is-disabled{cursor:default;opacity:0.2}.fn-date-picker .pika-prev,.fn-date-picker .is-rtl .pika-next{float:left;background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAYAAAAsEj5rAAAAUklEQVR42u3VMQoAIBADQf8Pgj+OD9hG2CtONJB2ymQkKe0HbwAP0xucDiQWARITIDEBEnMgMQ8S8+AqBIl6kKgHiXqQqAeJepBo/z38J/U0uAHlaBkBl9I4GwAAAABJRU5ErkJggg==");*left:0}.fn-date-picker .pika-next,.fn-date-picker .is-rtl .pika-prev{float:right;background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAYAAAAsEj5rAAAAU0lEQVR42u3VOwoAMAgE0dwfAnNjU26bYkBCFGwfiL9VVWoO+BJ4Gf3gtsEKKoFBNTCoCAYVwaAiGNQGMUHMkjGbgjk2mIONuXo0nC8XnCf1JXgArVIZAQh5TKYAAAAASUVORK5CYII=");*right:0}.fn-date-picker .pika-select{display:inline-block;*display:inline}.fn-date-picker .pika-table{width:100%;border-collapse:collapse;border-spacing:0;border:0}.fn-date-picker .pika-table th,.fn-date-picker .pika-table td{width:14.28571%;padding:0}.fn-date-picker .pika-table th{color:#999;font-size:12px;line-height:25px;font-weight:bold;text-align:center}.fn-date-picker .pika-table abbr{border-bottom:none;cursor:help}.fn-date-picker .pika-button{cursor:pointer;display:block;-moz-box-sizing:border-box;box-sizing:border-box;outline:none;border:0;margin:0;width:100%;padding:5px;color:#666;font-size:12px;line-height:15px;text-align:right;background:#f5f5f5}.fn-date-picker .pika-button:hover{color:#fff !important;background:#ff8000 !important;box-shadow:none !important;border-radius:3px !important}.fn-date-picker .is-today .pika-button{color:#3af;font-weight:bold}.fn-date-picker .is-selected .pika-button{color:#fff;font-weight:bold;background:#3af;box-shadow:inset 0 1px 3px #178fe5;border-radius:3px}.fn-date-picker .is-disabled .pika-button{pointer-events:none;cursor:default;color:#999;opacity:0.3}.fn-date-picker .pika-week{font-size:11px;color:#999}.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_b9cde6ba-8b13-4aab-9a41-0bd425242a4b fieldset{border:0;padding:0;margin:0;max-width:500px}.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_b9cde6ba-8b13-4aab-9a41-0bd425242a4b fieldset.form-columns-1 .hs-input{width:95%}.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_b9cde6ba-8b13-4aab-9a41-0bd425242a4b fieldset.form-columns-1 .input{margin-right:8px}.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_b9cde6ba-8b13-4aab-9a41-0bd425242a4b fieldset.form-columns-1 input[type="checkbox"],.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_b9cde6ba-8b13-4aab-9a41-0bd425242a4b fieldset.form-columns-1 input[type="radio"]{width:auto}.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_b9cde6ba-8b13-4aab-9a41-0bd425242a4b fieldset.form-columns-2 .hs-form-field{width:50%;float:left}.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_b9cde6ba-8b13-4aab-9a41-0bd425242a4b fieldset.form-columns-2 .input{margin-right:8px}.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_b9cde6ba-8b13-4aab-9a41-0bd425242a4b fieldset.form-columns-3 .hs-form-field{width:32.7%;float:left}.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_b9cde6ba-8b13-4aab-9a41-0bd425242a4b fieldset.form-columns-3 .input{margin-right:8px}.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_b9cde6ba-8b13-4aab-9a41-0bd425242a4b label.hs-hidden{visibility:hidden}.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_b9cde6ba-8b13-4aab-9a41-0bd425242a4b .hs-field-desc{width:100%}.hs-custom-style fieldset,.hs-custom-style .hs-input{max-width:100%}.hs-custom-style fieldset.form-columns-3 .hs-form-field,.hs-custom-style>div.form-columns-3 .hs-form-field{width:33.3%}.hs-custom-style fieldset>div:last-of-type input.hs-input:not([type=checkbox]):not([type=radio]),.hs-custom-style>div>div:last-of-type input.hs-input:not([type=checkbox]):not([type=radio]){width:100%;max-width:100%}.hs-custom-style fieldset input:not([type="image"]):not([type="submit"]):not([type="button"]):not([type="radio"]):not([type="checkbox"]):not([type="file"]),.hs-custom-style>div input:not([type="image"]):not([type="submit"]):not([type="button"]):not([type="radio"]):not([type="checkbox"]):not([type="file"]){box-sizing:border-box;padding:0 15px;min-height:27px}.hsformerror{margin:0 0 2px;padding:2px 6px;height:auto;background-color:#fdd2d0;font-size:11px;border:1px solid #fcb3af;padding:4px 16px 4px 10px;color:#000;display:none;background-image:-webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fefefe), color-stop(100%, #fdd2d0));background-image:-webkit-linear-gradient(#fefefe, #fdd2d0);background-image:-moz-linear-gradient(#fefefe, #fdd2d0);background-image:-o-linear-gradient(#fefefe, #fdd2d0);background-image:linear-gradient(#fefefe,#fdd2d0);-webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;border-radius:4px;-webkit-box-shadow:0 0 6px #ddd;-moz-box-shadow:0 0 6px #ddd;box-shadow:0 0 6px #ddd;z-index:99999}.hsformerror em{border:10px solid;border-color:#fdd2d0 transparent transparent;bottom:-17px;display:block;height:0;left:60px;position:absolute;width:0}.hsformerror p{font-family:Lucida Grande,Lucida Sans Unicode,bitstream vera sans,trebuchet ms,verdana,sans-serif;margin:0;float:left;margin-right:8px}.hsformerror:hover{cursor:default}.hsformerror .close-form-error{float:right;display:inline;top:3px;position:absolute;font-family:Verdana !important;color:#b17c79 !important;cursor:pointer !important;font-size:11px !important;font-weight:normal !important}.hsformerror .close-form-error:hover{color:#cc8884}@media (max-width: 400px), (min-device-width: 320px) and (max-device-width: 480px){form.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_b9cde6ba-8b13-4aab-9a41-0bd425242a4b:not(.hs-video-form) .form-columns-2 .hs-form-field,form.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_b9cde6ba-8b13-4aab-9a41-0bd425242a4b:not(.hs-video-form) .form-columns-3 .hs-form-field{float:none;width:100%}form.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_b9cde6ba-8b13-4aab-9a41-0bd425242a4b:not(.hs-video-form) .form-columns-2 .hs-form-field .hs-input,form.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_b9cde6ba-8b13-4aab-9a41-0bd425242a4b:not(.hs-video-form) .form-columns-3 .hs-form-field .hs-input{width:95%}form.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_b9cde6ba-8b13-4aab-9a41-0bd425242a4b:not(.hs-video-form) .form-columns-2 .hs-form-field input[type="checkbox"],form.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_b9cde6ba-8b13-4aab-9a41-0bd425242a4b:not(.hs-video-form) .form-columns-2 .hs-form-field input[type="radio"],form.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_b9cde6ba-8b13-4aab-9a41-0bd425242a4b:not(.hs-video-form) .form-columns-3 .hs-form-field input[type="checkbox"],form.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_b9cde6ba-8b13-4aab-9a41-0bd425242a4b:not(.hs-video-form) .form-columns-3 .hs-form-field input[type="radio"]{width:auto}}.legal-consent-container .field.hs-form-field{margin-bottom:8px}.legal-consent-container .hs-field-desc.checkbox-desc{margin:-12px 0 0 21px}.legal-consent-container .hs-form-booleancheckbox-display p{margin:0;display:inline-block}.legal-consent-container .hs-error-msgs label{color:#f2545b}.legal-consent-container ~ .hs_recaptcha{margin-top:18px}.cookie-reset-container{font-size:14px;margin-bottom:10px;text-align:right}#hs-outer-captcha-target,#hs-outer-captcha-target *{display:none;height:0;width:0}.hubspot-link__container{font-size:14px;padding-bottom:40px;position:relative;color:#9fa0a2;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}.hubspot-link-text{color:#00a4bd;font-weight:400}.hubspot-link__container.sproket{color:#9fa0a2}.hubspot-link{text-decoration:none;color:#9fa0a2}.hubspot-link:hover{text-decoration:underline;color:#00a4bd}.hubspot-link__icon{margin-bottom:-1px;margin-right:5px}.hubspot-link__container.sproket .hubspot-link__icon{width:30px;margin-right:0px;float:left;margin-top:-10px;margin-left:-5px}</style><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_dialog_advanced{border-radius:8px;padding:10px}.fb_dialog_content{background:#fff;color:#373737}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{left:5px;right:auto;top:5px}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{height:100%;left:0;margin:0;overflow:visible;position:absolute;top:-10000px;transform:none;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{background:none;height:auto;min-height:initial;min-width:initial;width:auto}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{clear:both;color:#fff;display:block;font-size:18px;padding-top:20px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .4);bottom:0;left:0;min-height:100%;position:absolute;right:0;top:0;width:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_mobile .fb_dialog_iframe{position:sticky;top:0}.fb_dialog_content .dialog_header{background:linear-gradient(from(#738aba), to(#2c4987));border-bottom:1px solid;border-color:#1d3c78;box-shadow:white 0 1px 1px -1px inset;color:#fff;font:bold 14px Helvetica, sans-serif;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:linear-gradient(from(#4267B2), to(#2a4887));background-clip:padding-box;border:1px solid #29487d;border-radius:3px;display:inline-block;line-height:18px;margin-top:3px;max-width:85px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{background:none;border:none;color:#fff;font:bold 12px Helvetica, sans-serif;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #4a4a4a;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f5f6f7;border:1px solid #4a4a4a;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-position:50% 50%;background-repeat:no-repeat;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}
+.fb_customer_chat_bounce_in_v2{animation-duration:300ms;animation-name:fb_bounce_in_v2;transition-timing-function:ease-in}.fb_customer_chat_bounce_out_v2{animation-duration:300ms;animation-name:fb_bounce_out_v2;transition-timing-function:ease-in}.fb_customer_chat_bounce_in_v2_mobile_chat_started{animation-duration:300ms;animation-name:fb_bounce_in_v2_mobile_chat_started;transition-timing-function:ease-in}.fb_customer_chat_bounce_out_v2_mobile_chat_started{animation-duration:300ms;animation-name:fb_bounce_out_v2_mobile_chat_started;transition-timing-function:ease-in}.fb_customer_chat_bubble_pop_in{animation-duration:250ms;animation-name:fb_customer_chat_bubble_bounce_in_animation}.fb_customer_chat_bubble_animated_no_badge{box-shadow:0 3px 12px rgba(0, 0, 0, .15);transition:box-shadow 150ms linear}.fb_customer_chat_bubble_animated_no_badge:hover{box-shadow:0 5px 24px rgba(0, 0, 0, .3)}.fb_customer_chat_bubble_animated_with_badge{box-shadow:-5px 4px 14px rgba(0, 0, 0, .15);transition:box-shadow 150ms linear}.fb_customer_chat_bubble_animated_with_badge:hover{box-shadow:-5px 8px 24px rgba(0, 0, 0, .2)}.fb_invisible_flow{display:inherit;height:0;overflow-x:hidden;width:0}.fb_mobile_overlay_active{background-color:#fff;height:100%;overflow:hidden;position:fixed;visibility:hidden;width:100%}@keyframes fb_bounce_in_v2{0%{opacity:0;transform:scale(0, 0);transform-origin:bottom right}50%{transform:scale(1.03, 1.03);transform-origin:bottom right}100%{opacity:1;transform:scale(1, 1);transform-origin:bottom right}}@keyframes fb_bounce_in_v2_mobile_chat_started{0%{opacity:0;top:20px}100%{opacity:1;top:0}}@keyframes fb_bounce_out_v2{0%{opacity:1;transform:scale(1, 1);transform-origin:bottom right}100%{opacity:0;transform:scale(0, 0);transform-origin:bottom right}}@keyframes fb_bounce_out_v2_mobile_chat_started{0%{opacity:1;top:0}100%{opacity:0;top:20px}}@keyframes fb_customer_chat_bubble_bounce_in_animation{0%{bottom:6pt;opacity:0;transform:scale(0, 0);transform-origin:center}70%{bottom:18pt;opacity:1;transform:scale(1.2, 1.2)}100%{transform:scale(1, 1)}}</style><style type="text/css" id="hs-form-styleb85317b5-8170-42ee-866d-94bb03003e62_9b83e8e9-49e3-409b-a0ca-05ccf24aa303">.fn-date-picker.pika-single{z-index:9999;display:block;position:relative;color:#333;background:#fff;border:1px solid #ccc;border-bottom-color:#bbb;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;*zoom:1}.fn-date-picker.pika-single.is-hidden{display:none}.fn-date-picker.pika-single.is-bound{position:absolute;box-shadow:0 5px 15px -5px rgba(0,0,0,0.5)}.fn-date-picker.pika-single:before,.fn-date-picker.pika-single:after{content:" ";display:table}.fn-date-picker.pika-single:after{clear:both}.fn-date-picker .pika-lendar{float:left;width:240px;margin:8px}.fn-date-picker .pika-title{position:relative;text-align:center}.fn-date-picker .pika-title select{cursor:pointer;position:absolute;z-index:9998;margin:0;left:0;top:5px;filter:alpha(opacity=0);opacity:0}.fn-date-picker .pika-label{display:inline-block;*display:inline;position:relative;z-index:9999;overflow:hidden;margin:0;padding:5px 3px;font-size:14px;line-height:20px;font-weight:bold;background-color:#fff}.fn-date-picker .pika-prev,.fn-date-picker .pika-next{display:block;cursor:pointer;position:relative;outline:none;border:0;padding:0;width:20px;height:30px;text-indent:20px;white-space:nowrap;overflow:hidden;background-color:transparent;background-position:center center;background-repeat:no-repeat;background-size:75% 75%;opacity:0.5;*position:absolute;*top:0}.fn-date-picker .pika-prev:hover,.fn-date-picker .pika-next:hover{opacity:1}.fn-date-picker .pika-prev.is-disabled,.fn-date-picker .pika-next.is-disabled{cursor:default;opacity:0.2}.fn-date-picker .pika-prev,.fn-date-picker .is-rtl .pika-next{float:left;background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAYAAAAsEj5rAAAAUklEQVR42u3VMQoAIBADQf8Pgj+OD9hG2CtONJB2ymQkKe0HbwAP0xucDiQWARITIDEBEnMgMQ8S8+AqBIl6kKgHiXqQqAeJepBo/z38J/U0uAHlaBkBl9I4GwAAAABJRU5ErkJggg==");*left:0}.fn-date-picker .pika-next,.fn-date-picker .is-rtl .pika-prev{float:right;background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAYAAAAsEj5rAAAAU0lEQVR42u3VOwoAMAgE0dwfAnNjU26bYkBCFGwfiL9VVWoO+BJ4Gf3gtsEKKoFBNTCoCAYVwaAiGNQGMUHMkjGbgjk2mIONuXo0nC8XnCf1JXgArVIZAQh5TKYAAAAASUVORK5CYII=");*right:0}.fn-date-picker .pika-select{display:inline-block;*display:inline}.fn-date-picker .pika-table{width:100%;border-collapse:collapse;border-spacing:0;border:0}.fn-date-picker .pika-table th,.fn-date-picker .pika-table td{width:14.28571%;padding:0}.fn-date-picker .pika-table th{color:#999;font-size:12px;line-height:25px;font-weight:bold;text-align:center}.fn-date-picker .pika-table abbr{border-bottom:none;cursor:help}.fn-date-picker .pika-button{cursor:pointer;display:block;-moz-box-sizing:border-box;box-sizing:border-box;outline:none;border:0;margin:0;width:100%;padding:5px;color:#666;font-size:12px;line-height:15px;text-align:right;background:#f5f5f5}.fn-date-picker .pika-button:hover{color:#fff !important;background:#ff8000 !important;box-shadow:none !important;border-radius:3px !important}.fn-date-picker .is-today .pika-button{color:#3af;font-weight:bold}.fn-date-picker .is-selected .pika-button{color:#fff;font-weight:bold;background:#3af;box-shadow:inset 0 1px 3px #178fe5;border-radius:3px}.fn-date-picker .is-disabled .pika-button{pointer-events:none;cursor:default;color:#999;opacity:0.3}.fn-date-picker .pika-week{font-size:11px;color:#999}.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_9b83e8e9-49e3-409b-a0ca-05ccf24aa303 fieldset{border:0;padding:0;margin:0;max-width:500px}.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_9b83e8e9-49e3-409b-a0ca-05ccf24aa303 fieldset.form-columns-1 .hs-input{width:95%}.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_9b83e8e9-49e3-409b-a0ca-05ccf24aa303 fieldset.form-columns-1 .input{margin-right:8px}.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_9b83e8e9-49e3-409b-a0ca-05ccf24aa303 fieldset.form-columns-1 input[type="checkbox"],.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_9b83e8e9-49e3-409b-a0ca-05ccf24aa303 fieldset.form-columns-1 input[type="radio"]{width:auto}.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_9b83e8e9-49e3-409b-a0ca-05ccf24aa303 fieldset.form-columns-2 .hs-form-field{width:50%;float:left}.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_9b83e8e9-49e3-409b-a0ca-05ccf24aa303 fieldset.form-columns-2 .input{margin-right:8px}.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_9b83e8e9-49e3-409b-a0ca-05ccf24aa303 fieldset.form-columns-3 .hs-form-field{width:32.7%;float:left}.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_9b83e8e9-49e3-409b-a0ca-05ccf24aa303 fieldset.form-columns-3 .input{margin-right:8px}.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_9b83e8e9-49e3-409b-a0ca-05ccf24aa303 label.hs-hidden{visibility:hidden}.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_9b83e8e9-49e3-409b-a0ca-05ccf24aa303 .hs-field-desc{width:100%}.hs-custom-style fieldset,.hs-custom-style .hs-input{max-width:100%}.hs-custom-style fieldset.form-columns-3 .hs-form-field,.hs-custom-style>div.form-columns-3 .hs-form-field{width:33.3%}.hs-custom-style fieldset>div:last-of-type input.hs-input:not([type=checkbox]):not([type=radio]),.hs-custom-style>div>div:last-of-type input.hs-input:not([type=checkbox]):not([type=radio]){width:100%;max-width:100%}.hs-custom-style fieldset input:not([type="image"]):not([type="submit"]):not([type="button"]):not([type="radio"]):not([type="checkbox"]):not([type="file"]),.hs-custom-style>div input:not([type="image"]):not([type="submit"]):not([type="button"]):not([type="radio"]):not([type="checkbox"]):not([type="file"]){box-sizing:border-box;padding:0 15px;min-height:27px}.hsformerror{margin:0 0 2px;padding:2px 6px;height:auto;background-color:#fdd2d0;font-size:11px;border:1px solid #fcb3af;padding:4px 16px 4px 10px;color:#000;display:none;background-image:-webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fefefe), color-stop(100%, #fdd2d0));background-image:-webkit-linear-gradient(#fefefe, #fdd2d0);background-image:-moz-linear-gradient(#fefefe, #fdd2d0);background-image:-o-linear-gradient(#fefefe, #fdd2d0);background-image:linear-gradient(#fefefe,#fdd2d0);-webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;border-radius:4px;-webkit-box-shadow:0 0 6px #ddd;-moz-box-shadow:0 0 6px #ddd;box-shadow:0 0 6px #ddd;z-index:99999}.hsformerror em{border:10px solid;border-color:#fdd2d0 transparent transparent;bottom:-17px;display:block;height:0;left:60px;position:absolute;width:0}.hsformerror p{font-family:Lucida Grande,Lucida Sans Unicode,bitstream vera sans,trebuchet ms,verdana,sans-serif;margin:0;float:left;margin-right:8px}.hsformerror:hover{cursor:default}.hsformerror .close-form-error{float:right;display:inline;top:3px;position:absolute;font-family:Verdana !important;color:#b17c79 !important;cursor:pointer !important;font-size:11px !important;font-weight:normal !important}.hsformerror .close-form-error:hover{color:#cc8884}@media (max-width: 400px), (min-device-width: 320px) and (max-device-width: 480px){form.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_9b83e8e9-49e3-409b-a0ca-05ccf24aa303:not(.hs-video-form) .form-columns-2 .hs-form-field,form.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_9b83e8e9-49e3-409b-a0ca-05ccf24aa303:not(.hs-video-form) .form-columns-3 .hs-form-field{float:none;width:100%}form.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_9b83e8e9-49e3-409b-a0ca-05ccf24aa303:not(.hs-video-form) .form-columns-2 .hs-form-field .hs-input,form.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_9b83e8e9-49e3-409b-a0ca-05ccf24aa303:not(.hs-video-form) .form-columns-3 .hs-form-field .hs-input{width:95%}form.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_9b83e8e9-49e3-409b-a0ca-05ccf24aa303:not(.hs-video-form) .form-columns-2 .hs-form-field input[type="checkbox"],form.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_9b83e8e9-49e3-409b-a0ca-05ccf24aa303:not(.hs-video-form) .form-columns-2 .hs-form-field input[type="radio"],form.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_9b83e8e9-49e3-409b-a0ca-05ccf24aa303:not(.hs-video-form) .form-columns-3 .hs-form-field input[type="checkbox"],form.hs-form-b85317b5-8170-42ee-866d-94bb03003e62_9b83e8e9-49e3-409b-a0ca-05ccf24aa303:not(.hs-video-form) .form-columns-3 .hs-form-field input[type="radio"]{width:auto}}.legal-consent-container .field.hs-form-field{margin-bottom:8px}.legal-consent-container .hs-field-desc.checkbox-desc{margin:-12px 0 0 21px}.legal-consent-container .hs-form-booleancheckbox-display p{margin:0;display:inline-block}.legal-consent-container .hs-error-msgs label{color:#f2545b}.legal-consent-container ~ .hs_recaptcha{margin-top:18px}.cookie-reset-container{font-size:14px;margin-bottom:10px;text-align:right}#hs-outer-captcha-target,#hs-outer-captcha-target *{display:none;height:0;width:0}.hubspot-link__container{font-size:14px;padding-bottom:40px;position:relative;color:#9fa0a2;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}.hubspot-link-text{color:#00a4bd;font-weight:400}.hubspot-link__container.sproket{color:#9fa0a2}.hubspot-link{text-decoration:none;color:#9fa0a2}.hubspot-link:hover{text-decoration:underline;color:#00a4bd}.hubspot-link__icon{margin-bottom:-1px;margin-right:5px}.hubspot-link__container.sproket .hubspot-link__icon{width:30px;margin-right:0px;float:left;margin-top:-10px;margin-left:-5px}</style></head>
+
+<body class="post-template-default single single-post postid-1611 single-format-standard themify-fw-4-1-5 themify-ultra-2-0-8 skin-default webkit not-ie default_width sidebar-none no-home no-touch builder-parallax-scrolling-active ready-view header-top-bar no-fixed-header footer-block tagline-off social-widget-off rss-off search-off header-widgets-off single-classic-layout tile_enable filter-hover-none filter-featured-only masonry-enabled revealing-footer sidemenu-active page-loaded themify_lightbox_loaded"><style type="text/css">html.hs-messages-widget-open.hs-messages-mobile,html.hs-messages-widget-open.hs-messages-mobile body{height:100%!important;overflow:hidden!important;position:relative!important}html.hs-messages-widget-open.hs-messages-mobile body{margin:0!important}#hubspot-messages-iframe-container{display:initial!important;z-index:2147483647;position:fixed!important;bottom:0!important;right:0!important}#hubspot-messages-iframe-container.internal{z-index:1016}#hubspot-messages-iframe-container.internal iframe{min-width:108px}#hubspot-messages-iframe-container .shadow{display:initial!important;z-index:-1;position:absolute;width:0;height:0;bottom:0;right:0;content:""}#hubspot-messages-iframe-container .shadow.internal{display:none!important}#hubspot-messages-iframe-container .shadow.active{width:400px;height:400px;background:radial-gradient(ellipse at bottom right,rgba(29,39,54,.16) 0,rgba(29,39,54,0) 72%)}#hubspot-messages-iframe-container iframe{display:initial!important;width:100%!important;height:100%!important;border:none!important;position:absolute!important;bottom:0!important;right:0!important;background:transparent!important}</style>
+
+<script type="text/javascript">
+	function themifyMobileMenuTrigger(e) {
+		if( document.body.clientWidth > 0 && document.body.clientWidth <= tf_mobile_menu_trigger_point ) {
+			document.body.classList.add( 'mobile_menu_active' );
+		} else {
+			document.body.classList.remove( 'mobile_menu_active' );
+		}
+	}
+	themifyMobileMenuTrigger();
+	document.addEventListener( 'DOMContentLoaded', function () {
+		jQuery( window ).on('tfsmartresize.tf_mobile_menu', themifyMobileMenuTrigger );
+	}, false );
+</script>
+
+<div id="pagewrap" class="hfeed site">
+
+			<div id="headerwrap">
+                        			                                                    <div class="header-icons">
+                                <a id="menu-icon" href="https://cambridgespark.com/getting-started-with-xgboost/#mobile-menu"><span class="menu-icon-inner"></span></a>
+                            </div>
+                        
+			<header id="header" class="pagewidth clearfix" itemscope="itemscope" itemtype="https://schema.org/WPHeader">
+
+	            
+	            <div class="header-bar">
+		            						<div id="site-logo"><a href="https://cambridgespark.com/" title="Cambridge Spark"><img src="./Getting started with XGBoost _ Cambridge Spark_files/cspark-small-logo.png" alt="Cambridge Spark" title="Cambridge Spark"></a></div>					
+									</div>
+				<!-- /.header-bar -->
+
+									<div id="mobile-menu" class="sidemenu sidemenu-off">
+
+						<div class="navbar-wrapper clearfix">
+
+							
+							
+							<nav id="main-nav-wrap" itemscope="itemscope" itemtype="https://schema.org/SiteNavigationElement">
+																	<ul id="main-nav" class="main-nav menu-name-primary"><li id="menu-item-835" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://cambridgespark.com/about/">About</a> </li>
+<li id="menu-item-924" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children has-sub-menu has-sub-menu"><a href="https://cambridgespark.com/getting-started-with-xgboost/#"><i class="fa fa-angle-down"></i> Bootcamps</a><span class="child-arrow"></span> 
+<ul class="sub-menu">
+<li id="menu-item-10" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://cambridgespark.com/applied-data-science-london/">Applied Data Science London</a> </li>
+<li id="menu-item-947" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://cambridgespark.com/online/">Applied Data Science Online</a> </li>
+<li id="menu-item-2743" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://cambridgespark.com/python-bootcamp/">Python Prep Bootcamp London</a> </li>
+</ul>
+</li>
+<li id="menu-item-837" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children has-sub-menu has-sub-menu"><a href="https://cambridgespark.com/getting-started-with-xgboost/#"><i class="fa fa-angle-down"></i> Corporate Offerings</a><span class="child-arrow"></span> 
+<ul class="sub-menu">
+<li id="menu-item-946" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children has-sub-menu"><a href="https://cambridgespark.com/onsite-courses/"><i class="fa fa-angle-down"></i> Onsite Courses</a><span class="child-arrow"></span> 
+	<ul class="sub-menu">
+<li id="menu-item-1105" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://cambridgespark.com/onsite-courses/core-data-science/">Core Data Science</a> </li>
+<li id="menu-item-4485" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://cambridgespark.com/data-science-in-production-with-python/">Data Science in Production with Python</a> </li>
+<li id="menu-item-1166" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://cambridgespark.com/onsite-courses/introduction-to-big-data-and-pyspark/">Introduction to Big Data and PySpark</a> </li>
+<li id="menu-item-1193" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://cambridgespark.com/onsite-courses/regression-and-time-series/">Regression and Time Series</a> </li>
+<li id="menu-item-1155" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://cambridgespark.com/onsite-courses/python-machine-learning/">Python Machine Learning</a> </li>
+<li id="menu-item-3688" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://cambridgespark.com/onsite-courses/python-for-analysts/">Python for Analysts</a> </li>
+<li id="menu-item-3716" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://cambridgespark.com/onsite-courses/python-for-engineers/">Python for Engineers</a> </li>
+<li id="menu-item-1184" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://cambridgespark.com/onsite-courses/pragmatic-python-programming/">Pragmatic Python Programming</a> </li>
+	</ul>
+</li>
+<li id="menu-item-3971" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://edukate.ai/">K.A.T.E.</a> </li>
+<li id="menu-item-944" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://cambridgespark.com/apprenticeship/">Apprenticeship</a> </li>
+<li id="menu-item-4306" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://cambridgespark.com/graduates/">Graduate Scheme</a> </li>
+<li id="menu-item-3963" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://cambridgespark.com/data-science-seminar/">Data Science for Executives</a> </li>
+<li id="menu-item-71" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://cambridgespark.com/consulting/">Consulting</a> </li>
+<li id="menu-item-945" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://cambridgespark.com/case-studies/">Case Studies</a> </li>
+</ul>
+</li>
+<li id="menu-item-839" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children has-sub-menu has-sub-menu"><a href="https://cambridgespark.com/getting-started-with-xgboost/#"><i class="fa fa-angle-down"></i> Insights</a><span class="child-arrow"></span> 
+<ul class="sub-menu">
+<li id="menu-item-836" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://blog.cambridgespark.com/">Blog</a> </li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://cambridgespark.com/events/">Events</a> </li>
+<li id="menu-item-952" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://cambridgespark.com/tutorials/">Tutorials</a> </li>
+<li id="menu-item-3451" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://cambridgespark.com/success-stories/">Success Stories</a> </li>
+<li id="menu-item-953" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://cambridgespark.com/career/">Career Resources</a> </li>
+</ul>
+</li>
+<li id="menu-item-838" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://cambridgespark.com/contact/">Contact</a> </li>
+</ul>									<!-- /#main-nav -->
+									
+																		
+															</nav>
+							<!-- /#main-nav-wrap -->
+							
+						</div>
+
+						
+						<a id="menu-icon-close" href="https://cambridgespark.com/getting-started-with-xgboost/#"></a>
+					</div>
+					<!-- /#mobile-menu -->
+				
+				
+				
+				
+			</header>
+			<!-- /#header -->
+
+	        
+		</div>
+		<!-- /#headerwrap -->
+	
+	<div id="body" class="clearfix" style="background-color: rgb(255, 255, 255);">
+
+		
+
+	
+	<!-- layout-container -->
+	<div id="layout" class="pagewidth clearfix">
+
+		
+		<!-- content -->
+		<div id="content" class="list-post">
+			
+			
+				
+
+<article id="post-1611" class="post clearfix post-1611 type-post status-publish format-standard has-post-thumbnail hentry category-tutorials tag-tutorials has-post-title no-post-date has-post-category has-post-tag has-post-comment has-post-author   cat-35928">
+	
+            <a href="https://cambridgespark.com/getting-started-with-xgboost/" data-post-permalink="yes" style="display: none;"></a>
+    
+	
+	
+	
+		
+			<figure class="post-image  clearfix">
+
+									<a href="https://cambridgespark.com/getting-started-with-xgboost/"><img src="./Getting started with XGBoost _ Cambridge Spark_files/jantine-doornbos-711322-unsplash-1024x683-1024x585.jpg" width="1024" height="585" class=" wp-post-image wp-image-1612" alt="jantine-doornbos-711322-unsplash"></a>
+				
+			</figure>
+
+		
+	
+	
+	<div class="post-content">
+		<div class="post-content-inner">
+
+			
+							 <h1 class="post-title entry-title"><a href="https://cambridgespark.com/getting-started-with-xgboost/">Getting started with XGBoost</a> </h1>			
+			
+			
+			<div class="entry-content">
+
+				
+					<section class="section section--body section--first">
+<div class="section-content">
+<div class="section-inner sectionLayout--insetColumn">
+<h3 id="719e" class="graf graf--h3 graf-after--h3">What is&nbsp;XGBoost?</h3>
+<p id="9ed5" class="graf graf--p graf-after--h3">XGBoost stands for <strong class="markup--strong markup--p-strong">Extreme Gradient Boosting</strong>, it is a performant machine learning library based on the paper <a class="markup--anchor markup--p-anchor" href="https://statweb.stanford.edu/~jhf/ftp/trebst.pdf" target="_blank" rel="noopener" data-href="https://statweb.stanford.edu/~jhf/ftp/trebst.pdf">Greedy Function Approximation: A Gradient Boosting Machine, by Friedman</a>. XGBoost implements a <a class="markup--anchor markup--p-anchor" href="https://en.wikipedia.org/wiki/Gradient_boosting" target="_blank" rel="noopener" data-href="https://en.wikipedia.org/wiki/Gradient_boosting">Gradient Boosting</a> algorithm based on decision trees.</p>
+<h3 id="2495" class="graf graf--h3 graf-after--p">The gradient boosting algorithm</h3>
+<p id="77bf" class="graf graf--p graf-after--h3">If you are already familiar with Random Forests, the Gradient Boosting algorithm implemented in XGBoost is also an ensemble of decision trees. Those trees are poor models individually, but when they are grouped they can be really performant.</p>
+<p id="7fe5" class="graf graf--p graf-after--p">The difference between XGBoost and Random Forest lies in the way those trees are built and combined. Random Forest builds fully grown decision trees in parallel on subsamples of the data. Each tree is higly specialized to predict on its subsample and do not generalize well (high variance). By combining the predictions made by each individual tree, the Random Forest algorithm decreases variance and gives good performance.</p>
+<p id="c1ff" class="graf graf--p graf-after--p">XGBoost on the other hand, builds really short and simple decision trees iteratively. Each tree is called a “weak learner” for their high bias. XGBoost starts by creating a first simple tree which has poor performance by itself. It then builds another tree which is trained to predict what the first tree was not able to, and is itself a weak learner too. The algorithm goes on by sequentially building more weak learners, each one correcting the previous tree until a stopping condition is reached, such as the number of trees (estimators) to build.</p>
+<h3 id="1c88" class="graf graf--h3 graf-after--p">Why should you learn to use&nbsp;XGBoost?</h3>
+<p id="93ac" class="graf graf--p graf-after--h3">XGBoost is widely used in Machine Learning and got particularly famous on <a class="markup--anchor markup--p-anchor" href="https://www.kaggle.com/" target="_blank" rel="noopener" data-href="https://www.kaggle.com/">Kaggle</a>, the machine learning competition website. As Anthony Goldbloom CEO of Kaggle <a class="markup--anchor markup--p-anchor" href="https://www.import.io/post/how-to-win-a-kaggle-competition/" target="_blank" rel="noopener" data-href="https://www.import.io/post/how-to-win-a-kaggle-competition/">said back in 2016</a>, when XGBoost was becoming big in competitive Machine Learning:</p>
+<blockquote id="6890" class="graf graf--pullquote graf-after--p"><p>It has almost always been ensembles of decision trees that have won competitions. It used to be random forest that was the big winner, but over the last six months a new algorithm called XGboost has cropped up, and it’s winning practically every competition in the structured data category.</p></blockquote>
+<p id="0597" class="graf graf--p graf-after--pullquote">XGBoost has shown a great track record of high performances on problems involving structured data and thus should be part of your data scientist toolbox, even more so if you are willing to compete on Kaggle. Apart from its performance, XGBoost is also recognized for its flexibility and speed. Whilst gradient boosting requires to build trees one by one sequentially, XGBoost implements a way to parallelize the training of each tree, making the training faster and the job of Data Scientists easier. XGBoost can be used with a simple SKlearn API (used in this tutorial) or a more flexible native API (used in the upcoming advanced tutorial). It is also available for other languages such as R, Java, Scala, C++, etc. and can run on distributed environments such as Hadoop and Spark.</p>
+<p id="4a3e" class="graf graf--p graf-after--p">A word of warning before going further with the tutorial, as it is well known, there is <a class="markup--anchor markup--p-anchor" href="https://en.wikipedia.org/wiki/No_free_lunch_theorem" target="_blank" rel="noopener" data-href="https://en.wikipedia.org/wiki/No_free_lunch_theorem">no free lunch in Machine Learning</a>, and XGBoost is no exception to this rule. It can sometimes be harder to tune or have a higher tendency to overfitting than a simpler model such as Random Forest and perform poorly with non structured data.</p>
+<h3 id="e722" class="graf graf--h3 graf-after--p">Getting started</h3>
+<p id="5940" class="graf graf--p graf-after--h3">XGBoost for Python is available on pip and conda, you can install it with the following commands:</p>
+<p id="10af" class="graf graf--p graf-after--p">With pip: <code class="markup--code markup--p-code">pip install --upgrade xgboost</code><br>
+With Anaconda: <code class="markup--code markup--p-code">conda install xgboost</code></p>
+<p id="1f87" class="graf graf--p graf-after--p">The repository can also be directly cloned from <a class="markup--anchor markup--p-anchor" href="https://github.com/dmlc/xgboost" target="_blank" rel="noopener" data-href="https://github.com/dmlc/xgboost">Github</a></p>
+<p id="1b76" class="graf graf--p graf-after--p"><strong class="markup--strong markup--p-strong">Note for Windows users</strong>: with some versions of Windows, the installation with pip might not work, if it’s the case you will need to build the library from Github. See link for Github repository above and instructions <a class="markup--anchor markup--p-anchor" href="https://www.kaggle.com/c/otto-group-product-classification-challenge/discussion/13043" target="_blank" rel="noopener" data-href="https://www.kaggle.com/c/otto-group-product-classification-challenge/discussion/13043">here</a> or <a class="markup--anchor markup--p-anchor" href="http://xgboost.readthedocs.io/en/latest/build.html#building-on-windows" target="_blank" rel="noopener" data-href="http://xgboost.readthedocs.io/en/latest/build.html#building-on-windows">here</a></p>
+<p id="39d3" class="graf graf--p graf-after--p"><strong class="markup--strong markup--p-strong">Note for MacOS users</strong>: you will need to install additional packages, see instructions <a class="markup--anchor markup--p-anchor" href="https://www.ibm.com/developerworks/community/blogs/jfp/entry/Installing_XGBoost_on_Mac_OSX?lang=en" target="_blank" rel="noopener" data-href="https://www.ibm.com/developerworks/community/blogs/jfp/entry/Installing_XGBoost_on_Mac_OSX?lang=en">here</a></p>
+<p id="3340" class="graf graf--p graf-after--p">For this tutorial you will also need pandas (with xlrd to load data in xls format) and scikit-learn</p>
+<p id="9820" class="graf graf--p graf-after--p"><code class="markup--code markup--p-code">pip install --upgrade pandas xlrd scikit-learn</code></p>
+<p id="cfff" class="graf graf--p graf-after--p">And matplotlib with graphviz to visualize our results</p>
+<p id="7f6e" class="graf graf--p graf-after--p"><code class="markup--code markup--p-code">pip install --upgrade matplotlib graphviz</code></p>
+<h3></h3>
+<h3 id="e37b" class="graf graf--h3 graf-after--p">Presentation of the dataset and&nbsp;problem</h3>
+<p id="3491" class="graf graf--p graf-after--h3">The data used for this tutorial can be downloaded online: <a class="markup--anchor markup--p-anchor" href="https://archive.ics.uci.edu/ml/datasets/default+of+credit+card+clients" target="_blank" rel="noopener" data-href="https://archive.ics.uci.edu/ml/datasets/default+of+credit+card+clients">https://archive.ics.uci.edu/ml/datasets/default+of+credit+card+clients</a>.</p>
+<p id="09a2" class="graf graf--p graf-after--p">This dataset contains information about credit card owners in Taiwan. It contains some demographics features, past payments, bills amount, etc. The last column is the target, whether or not the customer will default payment on the next month. Here is a more thorough description of the features:</p>
+<blockquote id="adbd" class="graf graf--blockquote graf-after--p"><p>This research employed a binary variable, default payment (Yes = 1, No = 0), as the response variable. This study reviewed the literature and used the following 23 variables as explanatory variables:</p>
+<p>X1: Amount of the given credit (NT dollar): it includes both the individual consumer credit and his/her family (supplementary) credit.</p>
+<p>X2: Gender (1 = male; 2 = female).</p>
+<p>X3: Education (1 = graduate school; 2 = university; 3 = high school; 4 = others).</p>
+<p>X4: Marital status (1 = married; 2 = single; 3 = others).</p>
+<p>X5: Age (year).</p>
+<p>X6 — X11: History of past payment. We tracked the past monthly payment records (from April to September, 2005) as follows: X6 = the repayment status in September, 2005; X7 = the repayment status in August, 2005;&nbsp;.&nbsp;.&nbsp;.;X11 = the repayment status in April, 2005. The measurement scale for the repayment status is: -1 = pay duly; 1 = payment delay for one month; 2 = payment delay for two months;&nbsp;.&nbsp;.&nbsp;.; 8 = payment delay for eight months; 9 = payment delay for nine months and above.</p>
+<p>X12-X17: Amount of bill statement (NT dollar). X12 = amount of bill statement in September, 2005; X13 = amount of bill statement in August, 2005;&nbsp;.&nbsp;.&nbsp;.; X17 = amount of bill statement in April, 2005.</p>
+<p>X18-X23: Amount of previous payment (NT dollar). X18 = amount paid in September, 2005; X19 = amount paid in August, 2005;&nbsp;.&nbsp;.&nbsp;.;X23 = amount paid in April, 2005.</p></blockquote>
+<h3 id="cb15" class="graf graf--h3 graf-after--blockquote">First round of&nbsp;training</h3>
+<h4 id="954c" class="graf graf--h4 graf-after--h3">Quick processing</h4>
+<pre class="graf graf--pre graf-after--h4"><code class="markup--code markup--pre-code u-paddingRight0 u-marginRight0"></code></pre>
+<pre class="EnlighterJSRAW" data-enlighter-language="null" style="display: none;"># Use pandas to load the data in a dataFrame
+import pandas as pd
+df = pd.read_excel('datasets/credit/default of credit card 
+clients.xls', header=1, index_col=0)
+
+df.head()</pre><div class="EnlighterJSWrapper enlighterEnlighterJSWrapper"><ol class="hoverEnabled enlighterEnlighterJS EnlighterJS"><li class=" odd"><span class="co1"># Use pandas to load the data in a dataFrame</span><span class=""></span></li><li class=" even"><span class="">import pandas as pd</span></li><li class=" odd"><span class="">df = pd.</span><span class="kw1">read_excel</span><span class="br0">(</span><span class="">'datasets/credit/default of credit card </span></li><li class=" even"><span class="">clients.xls', header=</span><span class="nu0">1</span><span class="">, index_col=</span><span class="nu0">0</span><span class="br0">)</span><span class=""></span></li><li class=" odd"><span class=""></span></li><li class=" even"><span class="">df.</span><span class="kw1">head</span><span class="br0">(</span><span class="br0">)</span></li></ol><pre style="display: none;"># Use pandas to load the data in a dataFrame
+import pandas as pd
+df = pd.read_excel('datasets/credit/default of credit card 
+clients.xls', header=1, index_col=0)
+
+df.head()</pre><div class="EnlighterJSToolbar"><a class="EnlighterJSInfoButton" title="EnlighterJS Syntax Highlighter"></a><a class="EnlighterJSRawButton" title="Toggle RAW Code"></a><a class="EnlighterJSWindowButton" title="Open Code in new Window"></a><span class="clear"></span></div></div>
+<figure id="928e" class="graf graf--figure graf-after--pre">
+<div class="aspectRatioPlaceholder is-locked">
+<div class="progressiveMedia js-progressiveMedia graf-image is-canvasLoaded is-imageLoaded" data-image-id="1*0jPS553LP4FoV_VJW4jgiA.png" data-width="688" data-height="221" data-scroll="native"><img class="progressiveMedia-image js-progressiveMedia-image" src="./Getting started with XGBoost _ Cambridge Spark_files/1_0jPS553LP4FoV_VJW4jgiA.png" data-src="https://i2.wp.com/cdn-images-1.medium.com/max/1600/1*0jPS553LP4FoV_VJW4jgiA.png?w=1165&amp;ssl=1" width="688" height="221"></div>
+<div data-image-id="1*0jPS553LP4FoV_VJW4jgiA.png" data-width="688" data-height="221" data-scroll="native"></div>
+</div>
+</figure>
+<pre class="EnlighterJSRAW" data-enlighter-language="null" style="display: none;">df.shape
+(30000, 24)</pre><div class="EnlighterJSWrapper enlighterEnlighterJSWrapper"><ol class="hoverEnabled enlighterEnlighterJS EnlighterJS"><li class=" odd"><span class="">df.</span><span class="kw1">shape</span><span class=""></span></li><li class=" even"><span class=""></span><span class="br0">(</span><span class="nu0">30000</span><span class="">, </span><span class="nu0">24</span><span class="br0">)</span></li></ol><pre style="display: none;">df.shape
+(30000, 24)</pre><div class="EnlighterJSToolbar"><a class="EnlighterJSInfoButton" title="EnlighterJS Syntax Highlighter"></a><a class="EnlighterJSRawButton" title="Toggle RAW Code"></a><a class="EnlighterJSWindowButton" title="Open Code in new Window"></a><span class="clear"></span></div></div>
+<p class="graf graf--pre graf-after--figure">As it happens sometimes with public datasets, the data is not perfectly clean and some columns have unexpected values, some customers have an education equal to 5 or 6, which does not map to anything, or a payment status equal to -2… Usually those inconsistencies should be investigated and cleaned, but since the focus of this tutorial is on xgboost, we will just remove them from our dataset.</p>
+<pre class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code u-paddingRight0 u-marginRight0"></code></pre>
+<pre class="graf graf--pre graf-after--p"></pre>
+<p>&nbsp;</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="null" style="display: none;">def process_categorical_features(df):
+    dummies_education = pd.get_dummies(df.EDUCATION, prefix="EDUCATION", drop_first=True)
+    dummies_marriage = pd.get_dummies(df.MARRIAGE, prefix="MARRIAGE", drop_first=True)
+    df.drop(["EDUCATION", "MARRIAGE"], axis=1, inplace=True)
+    return pd.concat([df, dummies_education, dummies_marriage], axis=1)
+df = process_categorical_features(df)
+
+df.head()</pre><div class="EnlighterJSWrapper enlighterEnlighterJSWrapper"><ol class="hoverEnabled enlighterEnlighterJS EnlighterJS"><li class=" odd"><span class="">def </span><span class="kw1">process_categorical_features</span><span class="br0">(</span><span class="">df</span><span class="br0">)</span><span class="">:</span></li><li class=" even"><span class="">    dummies_education = pd.</span><span class="kw1">get_dummies</span><span class="br0">(</span><span class="">df.EDUCATION, prefix=</span><span class="st0">"EDUCATION"</span><span class="">, drop_first=True</span><span class="br0">)</span><span class=""></span></li><li class=" odd"><span class="">    dummies_marriage = pd.</span><span class="kw1">get_dummies</span><span class="br0">(</span><span class="">df.MARRIAGE, prefix=</span><span class="st0">"MARRIAGE"</span><span class="">, drop_first=True</span><span class="br0">)</span><span class=""></span></li><li class=" even"><span class="">    df.</span><span class="kw1">drop</span><span class="br0">(</span><span class="br0">[</span><span class="st0">"EDUCATION"</span><span class="">, </span><span class="st0">"MARRIAGE"</span><span class="br0">]</span><span class="">, axis=</span><span class="nu0">1</span><span class="">, inplace=True</span><span class="br0">)</span><span class=""></span></li><li class=" odd"><span class="">    return pd.</span><span class="kw1">concat</span><span class="br0">(</span><span class="br0">[</span><span class="">df, dummies_education, dummies_marriage</span><span class="br0">]</span><span class="">, axis=</span><span class="nu0">1</span><span class="br0">)</span><span class=""></span></li><li class=" even"><span class="">df = </span><span class="kw1">process_categorical_features</span><span class="br0">(</span><span class="">df</span><span class="br0">)</span><span class=""></span></li><li class=" odd"><span class=""></span></li><li class=" even"><span class="">df.</span><span class="kw1">head</span><span class="br0">(</span><span class="br0">)</span></li></ol><pre style="display: none;">def process_categorical_features(df):
+    dummies_education = pd.get_dummies(df.EDUCATION, prefix="EDUCATION", drop_first=True)
+    dummies_marriage = pd.get_dummies(df.MARRIAGE, prefix="MARRIAGE", drop_first=True)
+    df.drop(["EDUCATION", "MARRIAGE"], axis=1, inplace=True)
+    return pd.concat([df, dummies_education, dummies_marriage], axis=1)
+df = process_categorical_features(df)
+
+df.head()</pre><div class="EnlighterJSToolbar"><a class="EnlighterJSInfoButton" title="EnlighterJS Syntax Highlighter"></a><a class="EnlighterJSRawButton" title="Toggle RAW Code"></a><a class="EnlighterJSWindowButton" title="Open Code in new Window"></a><span class="clear"></span></div></div>
+<p>&nbsp;</p>
+<p id="5927" class="graf graf--p graf-after--pre">Some features are categorical so we will need to create dummy variables before passing the data to xgboost. This is easily done with pandas’ get_dummies method.</p>
+<pre class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code u-paddingRight0 u-marginRight0"></code></pre>
+<pre class="EnlighterJSRAW" data-enlighter-language="null" style="display: none;">def&nbsp;process_categorical_features(df): 
+dummies_education = pd.get_dummies(df.EDUCATION, 
+prefix="EDUCATION", drop_first=True) 
+dummies_marriage = pd.get_dummies(df.MARRIAGE, 
+prefix="MARRIAGE", drop_first=True) 
+df.drop(["EDUCATION", "MARRIAGE"], axis=1, inplace=True)
+return pd.concat([df, dummies_education, dummies_marriage], axis=1)
+df = process_categorical_features(df)
+
+df.head()</pre><div class="EnlighterJSWrapper enlighterEnlighterJSWrapper"><ol class="hoverEnabled enlighterEnlighterJS EnlighterJS"><li class=" odd"><span class="">def </span><span class="kw1">process_categorical_features</span><span class="br0">(</span><span class="">df</span><span class="br0">)</span><span class="">: </span></li><li class=" even"><span class="">dummies_education = pd.</span><span class="kw1">get_dummies</span><span class="br0">(</span><span class="">df.EDUCATION, </span></li><li class=" odd"><span class="">prefix=</span><span class="st0">"EDUCATION"</span><span class="">, drop_first=True</span><span class="br0">)</span><span class=""> </span></li><li class=" even"><span class="">dummies_marriage = pd.</span><span class="kw1">get_dummies</span><span class="br0">(</span><span class="">df.MARRIAGE, </span></li><li class=" odd"><span class="">prefix=</span><span class="st0">"MARRIAGE"</span><span class="">, drop_first=True</span><span class="br0">)</span><span class=""> </span></li><li class=" even"><span class="">df.</span><span class="kw1">drop</span><span class="br0">(</span><span class="br0">[</span><span class="st0">"EDUCATION"</span><span class="">, </span><span class="st0">"MARRIAGE"</span><span class="br0">]</span><span class="">, axis=</span><span class="nu0">1</span><span class="">, inplace=True</span><span class="br0">)</span><span class=""></span></li><li class=" odd"><span class="">return pd.</span><span class="kw1">concat</span><span class="br0">(</span><span class="br0">[</span><span class="">df, dummies_education, dummies_marriage</span><span class="br0">]</span><span class="">, axis=</span><span class="nu0">1</span><span class="br0">)</span><span class=""></span></li><li class=" even"><span class="">df = </span><span class="kw1">process_categorical_features</span><span class="br0">(</span><span class="">df</span><span class="br0">)</span><span class=""></span></li><li class=" odd"><span class=""></span></li><li class=" even"><span class="">df.</span><span class="kw1">head</span><span class="br0">(</span><span class="br0">)</span></li></ol><pre style="display: none;">def process_categorical_features(df): 
+dummies_education = pd.get_dummies(df.EDUCATION, 
+prefix="EDUCATION", drop_first=True) 
+dummies_marriage = pd.get_dummies(df.MARRIAGE, 
+prefix="MARRIAGE", drop_first=True) 
+df.drop(["EDUCATION", "MARRIAGE"], axis=1, inplace=True)
+return pd.concat([df, dummies_education, dummies_marriage], axis=1)
+df = process_categorical_features(df)
+
+df.head()</pre><div class="EnlighterJSToolbar"><a class="EnlighterJSInfoButton" title="EnlighterJS Syntax Highlighter"></a><a class="EnlighterJSRawButton" title="Toggle RAW Code"></a><a class="EnlighterJSWindowButton" title="Open Code in new Window"></a><span class="clear"></span></div></div>
+<figure id="4476" class="graf graf--figure graf-after--pre">
+<div class="aspectRatioPlaceholder is-locked">
+<div class="progressiveMedia js-progressiveMedia graf-image is-canvasLoaded is-imageLoaded" data-image-id="1*uzOltdnyBX9prYFAcINHew.png" data-width="607" data-height="191" data-scroll="native"><img class="progressiveMedia-image js-progressiveMedia-image" src="./Getting started with XGBoost _ Cambridge Spark_files/1_uzOltdnyBX9prYFAcINHew.png" data-src="https://i2.wp.com/cdn-images-1.medium.com/max/1600/1*uzOltdnyBX9prYFAcINHew.png?w=1165&amp;ssl=1" width="607" height="191"></div>
+</div>
+</figure>
+</div>
+<div class="section-inner sectionLayout--insetColumn">
+<p id="3fe9" class="graf graf--p graf-after--figure">We dropped columns EDUCATION and MARRIAGE to replace them by dummy variables, encoding each possible value. We do not need to do it for SEX as it is already a binary variable. The encoding for the payment variables (PAY_N) is not perfect either, as a positive number refers to the number of months late and -1 refers to a payment in due time. Ideally, we should process it too, but we will assume here that it means the payment was done the month before, so the continuous variable makes sense.</p>
+<h4 id="0a13" class="graf graf--h4 graf-after--p">Prepare training and test&nbsp;datasets</h4>
+<p id="e607" class="graf graf--p graf-after--h4">Let’s extract the target from the features</p>
+<pre class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code u-paddingRight0 u-marginRight0"></code></pre>
+<pre class="EnlighterJSRAW" data-enlighter-language="null" style="display: none;">y = df['default payment next month']
+X = df[[col for col in df.columns if col!="default payment next month"]]</pre><div class="EnlighterJSWrapper enlighterEnlighterJSWrapper"><ol class="hoverEnabled enlighterEnlighterJS EnlighterJS"><li class=" odd"><span class="">y = df</span><span class="br0">[</span><span class="st0">'default payment next month'</span><span class="br0">]</span><span class=""></span></li><li class=" even"><span class="">X = df</span><span class="br0">[</span><span class="br0">[</span><span class="">col for col in df.columns if col!=</span><span class="st0">"default payment next month"</span><span class="br0">]</span><span class="br0">]</span></li></ol><pre style="display: none;">y = df['default payment next month']
+X = df[[col for col in df.columns if col!="default payment next month"]]</pre><div class="EnlighterJSToolbar"><a class="EnlighterJSInfoButton" title="EnlighterJS Syntax Highlighter"></a><a class="EnlighterJSRawButton" title="Toggle RAW Code"></a><a class="EnlighterJSWindowButton" title="Open Code in new Window"></a><span class="clear"></span></div></div>
+<pre class="EnlighterJSRAW" data-enlighter-language="null" style="display: none;"><code class="markup--code markup--pre-code u-paddingRight0 u-marginRight0"></code></pre><div class="EnlighterJSWrapper enlighterEnlighterJSWrapper"><ol class="hoverEnabled enlighterEnlighterJS EnlighterJS"><li class=" odd"><span class="">&lt;code class=</span><span class="st0">"markup--code markup--pre-code u-paddingRight0 u-marginRight0"</span><span class="">&gt;&lt;/code&gt;</span></li></ol><pre style="display: none;">&lt;code class="markup--code markup--pre-code u-paddingRight0 u-marginRight0"&gt;&lt;/code&gt;</pre><div class="EnlighterJSToolbar"><a class="EnlighterJSInfoButton" title="EnlighterJS Syntax Highlighter"></a><a class="EnlighterJSRawButton" title="Toggle RAW Code"></a><a class="EnlighterJSWindowButton" title="Open Code in new Window"></a><span class="clear"></span></div></div>
+<p><code class="markup--code markup--pre-code u-paddingRight0 u-marginRight0" style="font-size: 0.7em; white-space: pre-wrap;"></code></p>
+<pre class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code u-paddingRight0 u-marginRight0"></code></pre>
+<pre class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code u-paddingRight0 u-marginRight0"></code></pre>
+<pre class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code u-paddingRight0 u-marginRight0"></code></pre>
+<p id="d384" class="graf graf--p graf-after--pre">The function train_test_split from sklearn allows easy random split of a dataset</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="null" style="display: none;">from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = 
+train_test_split(X,y,test_size=.25, random_state=42)
+
+print("Size of train dataset: {} rows".format(X_train.shape[0]))
+print("Size of test dataset: {} rows".format(X_test.shape[0]))
+
+Size of train dataset: 17391 rows
+Size of test dataset: 5797 rows</pre><div class="EnlighterJSWrapper enlighterEnlighterJSWrapper"><ol class="hoverEnabled enlighterEnlighterJS EnlighterJS"><li class=" odd"><span class="">from sklearn.model_selection import train_test_split</span></li><li class=" even"><span class="">X_train, X_test, y_train, y_test = </span></li><li class=" odd"><span class=""></span><span class="kw1">train_test_split</span><span class="br0">(</span><span class="">X,y,test_size=.</span><span class="nu0">25</span><span class="">, random_state=</span><span class="nu0">42</span><span class="br0">)</span><span class=""></span></li><li class=" even"><span class=""></span></li><li class=" odd"><span class=""></span><span class="kw1">print</span><span class="br0">(</span><span class="st0">"Size of train dataset: {} rows"</span><span class="">.</span><span class="kw1">format</span><span class="br0">(</span><span class="">X_train.shape</span><span class="br0">[</span><span class="nu0">0</span><span class="br0">]</span><span class="br0">)</span><span class="br0">)</span><span class=""></span></li><li class=" even"><span class=""></span><span class="kw1">print</span><span class="br0">(</span><span class="st0">"Size of test dataset: {} rows"</span><span class="">.</span><span class="kw1">format</span><span class="br0">(</span><span class="">X_test.shape</span><span class="br0">[</span><span class="nu0">0</span><span class="br0">]</span><span class="br0">)</span><span class="br0">)</span><span class=""></span></li><li class=" odd"><span class=""></span></li><li class=" even"><span class="">Size of train dataset: </span><span class="nu0">17391</span><span class=""> rows</span></li><li class=" odd"><span class="">Size of test dataset: </span><span class="nu0">5797</span><span class=""> rows</span></li></ol><pre style="display: none;">from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = 
+train_test_split(X,y,test_size=.25, random_state=42)
+
+print("Size of train dataset: {} rows".format(X_train.shape[0]))
+print("Size of test dataset: {} rows".format(X_test.shape[0]))
+
+Size of train dataset: 17391 rows
+Size of test dataset: 5797 rows</pre><div class="EnlighterJSToolbar"><a class="EnlighterJSInfoButton" title="EnlighterJS Syntax Highlighter"></a><a class="EnlighterJSRawButton" title="Toggle RAW Code"></a><a class="EnlighterJSWindowButton" title="Open Code in new Window"></a><span class="clear"></span></div></div>
+<h4 id="6628" class="graf graf--h4 graf-after--pre">Ready to&nbsp;train!</h4>
+<pre class="EnlighterJSRAW" data-enlighter-language="null" style="display: none;">import xgboost as xgb</pre><div class="EnlighterJSWrapper enlighterEnlighterJSWrapper"><ol class="hoverEnabled enlighterEnlighterJS EnlighterJS"><li class=" odd"><span class="">import xgboost as xgb</span></li></ol><pre style="display: none;">import xgboost as xgb</pre><div class="EnlighterJSToolbar"><a class="EnlighterJSInfoButton" title="EnlighterJS Syntax Highlighter"></a><a class="EnlighterJSRawButton" title="Toggle RAW Code"></a><a class="EnlighterJSWindowButton" title="Open Code in new Window"></a><span class="clear"></span></div></div>
+<p>&nbsp;</p>
+<p id="4168" class="graf graf--p graf-after--pre">For this tutorial, we are going to use the sklearn API of xgboost, which is easy to use and can fit in a large machine learning pipeline using other models from the scikit-learn library</p>
+<p id="24d7" class="graf graf--p graf-after--p">We set nthread to -1 to tell xgboost to use as many threads as available to build trees in parallel.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="null" style="display: none;">classifier = xgb.sklearn.XGBClassifier(nthread=-1, seed=42)</pre><div class="EnlighterJSWrapper enlighterEnlighterJSWrapper"><ol class="hoverEnabled enlighterEnlighterJS EnlighterJS"><li class=" odd"><span class="">classifier = xgb.sklearn.</span><span class="kw1">XGBClassifier</span><span class="br0">(</span><span class="">nthread=-</span><span class="nu0">1</span><span class="">, seed=</span><span class="nu0">42</span><span class="br0">)</span></li></ol><pre style="display: none;">classifier = xgb.sklearn.XGBClassifier(nthread=-1, seed=42)</pre><div class="EnlighterJSToolbar"><a class="EnlighterJSInfoButton" title="EnlighterJS Syntax Highlighter"></a><a class="EnlighterJSRawButton" title="Toggle RAW Code"></a><a class="EnlighterJSWindowButton" title="Open Code in new Window"></a><span class="clear"></span></div></div>
+<p id="bec6" class="graf graf--p graf-after--pre">Let’s train a model with the default parameters. We will learn in a future tutorial how to select the best hyperparameters to improve accuracy.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="null" style="display: none;">classifier.fit(X_train, y_train)
+XGBClassifier(base_score=0.5, colsample_bylevel=1, 
+colsample_bytree=1,
+       gamma=0, learning_rate=0.1, max_delta_step=0, max_depth=3,
+       min_child_weight=1, missing=None, n_estimators=100, 
+nthread=-1,
+       objective='binary:logistic', reg_alpha=0, reg_lambda=1,
+       scale_pos_weight=1, seed=42, silent=True, subsample=1)</pre><div class="EnlighterJSWrapper enlighterEnlighterJSWrapper"><ol class="hoverEnabled enlighterEnlighterJS EnlighterJS"><li class=" odd"><span class="">classifier.</span><span class="kw1">fit</span><span class="br0">(</span><span class="">X_train, y_train</span><span class="br0">)</span><span class=""></span></li><li class=" even"><span class=""></span><span class="kw1">XGBClassifier</span><span class="br0">(</span><span class="">base_score=</span><span class="nu0">0.5</span><span class="">, colsample_bylevel=</span><span class="nu0">1</span><span class="">, </span></li><li class=" odd"><span class="">colsample_bytree=</span><span class="nu0">1</span><span class="">,</span></li><li class=" even"><span class="">       gamma=</span><span class="nu0">0</span><span class="">, learning_rate=</span><span class="nu0">0.1</span><span class="">, max_delta_step=</span><span class="nu0">0</span><span class="">, max_depth=</span><span class="nu0">3</span><span class="">,</span></li><li class=" odd"><span class="">       min_child_weight=</span><span class="nu0">1</span><span class="">, missing=None, n_estimators=</span><span class="nu0">100</span><span class="">, </span></li><li class=" even"><span class="">nthread=-</span><span class="nu0">1</span><span class="">,</span></li><li class=" odd"><span class="">       objective=</span><span class="st0">'binary:logistic'</span><span class="">, reg_alpha=</span><span class="nu0">0</span><span class="">, reg_lambda=</span><span class="nu0">1</span><span class="">,</span></li><li class=" even"><span class="">       scale_pos_weight=</span><span class="nu0">1</span><span class="">, seed=</span><span class="nu0">42</span><span class="">, silent=True, subsample=</span><span class="nu0">1</span><span class="br0">)</span></li></ol><pre style="display: none;">classifier.fit(X_train, y_train)
+XGBClassifier(base_score=0.5, colsample_bylevel=1, 
+colsample_bytree=1,
+       gamma=0, learning_rate=0.1, max_delta_step=0, max_depth=3,
+       min_child_weight=1, missing=None, n_estimators=100, 
+nthread=-1,
+       objective='binary:logistic', reg_alpha=0, reg_lambda=1,
+       scale_pos_weight=1, seed=42, silent=True, subsample=1)</pre><div class="EnlighterJSToolbar"><a class="EnlighterJSInfoButton" title="EnlighterJS Syntax Highlighter"></a><a class="EnlighterJSRawButton" title="Toggle RAW Code"></a><a class="EnlighterJSWindowButton" title="Open Code in new Window"></a><span class="clear"></span></div></div>
+<h3 id="175a" class="graf graf--h3 graf-after--pre">Evaluation</h3>
+<p id="8cad" class="graf graf--p graf-after--h3">Let’s use our trained model to predict whether the customers from the test set will default or not and evaluate the accuracy of our model.</p>
+<pre class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code"></code></pre>
+<pre class="EnlighterJSRAW" data-enlighter-language="null" style="display: none;">predictions = classifier.predict(X_test)</pre><div class="EnlighterJSWrapper enlighterEnlighterJSWrapper"><ol class="hoverEnabled enlighterEnlighterJS EnlighterJS"><li class=" odd"><span class="">predictions = classifier.</span><span class="kw1">predict</span><span class="br0">(</span><span class="">X_test</span><span class="br0">)</span></li></ol><pre style="display: none;">predictions = classifier.predict(X_test)</pre><div class="EnlighterJSToolbar"><a class="EnlighterJSInfoButton" title="EnlighterJS Syntax Highlighter"></a><a class="EnlighterJSRawButton" title="Toggle RAW Code"></a><a class="EnlighterJSWindowButton" title="Open Code in new Window"></a><span class="clear"></span></div></div>
+<pre class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code"></code></pre>
+<pre id="59ee" class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code"></code></pre>
+<p id="4a54" class="graf graf--p graf-after--pre">Predictions are returned in a numpy array. Let’s convert it to a DataFrame for better visualisation</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="null" style="display: none;">pd.DataFrame(predictions, index=X_test.index, columns=['Predicted default']).head()</pre><div class="EnlighterJSWrapper enlighterEnlighterJSWrapper"><ol class="hoverEnabled enlighterEnlighterJS EnlighterJS"><li class=" odd"><span class="">pd.</span><span class="kw1">DataFrame</span><span class="br0">(</span><span class="">predictions, index=X_test.index, columns=</span><span class="br0">[</span><span class="st0">'Predicted default'</span><span class="br0">]</span><span class="br0">)</span><span class="">.</span><span class="kw1">head</span><span class="br0">(</span><span class="br0">)</span></li></ol><pre style="display: none;">pd.DataFrame(predictions, index=X_test.index, columns=['Predicted default']).head()</pre><div class="EnlighterJSToolbar"><a class="EnlighterJSInfoButton" title="EnlighterJS Syntax Highlighter"></a><a class="EnlighterJSRawButton" title="Toggle RAW Code"></a><a class="EnlighterJSWindowButton" title="Open Code in new Window"></a><span class="clear"></span></div></div>
+<figure id="3dee" class="graf graf--figure graf-after--pre">
+<div class="aspectRatioPlaceholder is-locked">
+<div class="aspectRatioPlaceholder-fill"></div>
+<div class="progressiveMedia js-progressiveMedia graf-image is-canvasLoaded is-imageLoaded" data-image-id="1*N7423KSM1LZYAMfVS7LH8A.png" data-width="401" data-height="193" data-scroll="native"><img class="progressiveMedia-image js-progressiveMedia-image" src="./Getting started with XGBoost _ Cambridge Spark_files/1_N7423KSM1LZYAMfVS7LH8A.png" data-src="https://i1.wp.com/cdn-images-1.medium.com/max/1600/1*N7423KSM1LZYAMfVS7LH8A.png?w=1165&amp;ssl=1" width="401" height="193"></div>
+</div>
+</figure>
+<p>&nbsp;</p>
+<p id="4d49" class="graf graf--p graf-after--figure">We predict that customers #5531 will not default payment next month, whilst customer #22901 will default.</p>
+<p>&nbsp;</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="null" style="display: none;">pd.DataFrame(y_test).head()</pre><div class="EnlighterJSWrapper enlighterEnlighterJSWrapper"><ol class="hoverEnabled enlighterEnlighterJS EnlighterJS"><li class=" odd"><span class="">pd.</span><span class="kw1">DataFrame</span><span class="br0">(</span><span class="">y_test</span><span class="br0">)</span><span class="">.</span><span class="kw1">head</span><span class="br0">(</span><span class="br0">)</span></li></ol><pre style="display: none;">pd.DataFrame(y_test).head()</pre><div class="EnlighterJSToolbar"><a class="EnlighterJSInfoButton" title="EnlighterJS Syntax Highlighter"></a><a class="EnlighterJSRawButton" title="Toggle RAW Code"></a><a class="EnlighterJSWindowButton" title="Open Code in new Window"></a><span class="clear"></span></div></div>
+<figure id="52e8" class="graf graf--figure graf-after--pre">
+<div class="aspectRatioPlaceholder is-locked">
+<div class="progressiveMedia js-progressiveMedia graf-image is-canvasLoaded is-imageLoaded" data-image-id="1*N7423KSM1LZYAMfVS7LH8A.png" data-width="401" data-height="193" data-scroll="native"><img class="progressiveMedia-image js-progressiveMedia-image" src="./Getting started with XGBoost _ Cambridge Spark_files/1_N7423KSM1LZYAMfVS7LH8A.png" data-src="https://i1.wp.com/cdn-images-1.medium.com/max/1600/1*N7423KSM1LZYAMfVS7LH8A.png?w=1165&amp;ssl=1" width="401" height="193"></div>
+</div>
+</figure>
+<p>&nbsp;</p>
+<p id="b1e2" class="graf graf--p graf-after--figure">Looking at the true default outcome, it turns out our model is right for those 5 first customers!</p>
+<p id="4246" class="graf graf--p graf-after--p">Let’s use the score xgboost method to see how accurate our model is for all test customers:</p>
+<p>&nbsp;</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="null" style="display: none;">print("Model Accuray: {:.2f}%".format(100*classifier.score(X_test, y_test)))
+Model Accuray: 82.58%</pre><div class="EnlighterJSWrapper enlighterEnlighterJSWrapper"><ol class="hoverEnabled enlighterEnlighterJS EnlighterJS"><li class=" odd"><span class="kw1">print</span><span class="br0">(</span><span class="st0">"Model Accuray: {:.2f}%"</span><span class="">.</span><span class="kw1">format</span><span class="br0">(</span><span class="nu0">100</span><span class="">*classifier.</span><span class="kw1">score</span><span class="br0">(</span><span class="">X_test, y_test</span><span class="br0">)</span><span class="br0">)</span><span class="br0">)</span><span class=""></span></li><li class=" even"><span class="">Model Accuray: </span><span class="nu0">82.58</span><span class="">%</span></li></ol><pre style="display: none;">print("Model Accuray: {:.2f}%".format(100*classifier.score(X_test, y_test)))
+Model Accuray: 82.58%</pre><div class="EnlighterJSToolbar"><a class="EnlighterJSInfoButton" title="EnlighterJS Syntax Highlighter"></a><a class="EnlighterJSRawButton" title="Toggle RAW Code"></a><a class="EnlighterJSWindowButton" title="Open Code in new Window"></a><span class="clear"></span></div></div>
+<p id="a3ac" class="graf graf--p graf-after--pre">We get a decent accuracy over 80%.</p>
+<p id="11ac" class="graf graf--p graf-after--p">But as a good data scientist, you should take it with a pinch of salt. The problem we are working on here is unbalanced: most of the people do not default payments and the customers who default are rare in our dataset. This means that by predicting that none of the customers will default, we could get a good accuracy too, even though the model would be useless. There are ways to prevent our model to make such mistakes.</p>
+<h3 id="d3e1" class="graf graf--h3 graf-after--p">Handy XGBoost&nbsp;methods</h3>
+<p id="8fc6" class="graf graf--p graf-after--h3">XGBoost comes with a set of handy methods to better understand your model</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="null" style="display: none;">%matplotlib inline
+import matplotlib.pyplot as plt</pre><div class="EnlighterJSWrapper enlighterEnlighterJSWrapper"><ol class="hoverEnabled enlighterEnlighterJS EnlighterJS"><li class=" odd"><span class="">%matplotlib inline</span></li><li class=" even"><span class="">import matplotlib.pyplot as plt</span></li></ol><pre style="display: none;">%matplotlib inline
+import matplotlib.pyplot as plt</pre><div class="EnlighterJSToolbar"><a class="EnlighterJSInfoButton" title="EnlighterJS Syntax Highlighter"></a><a class="EnlighterJSRawButton" title="Toggle RAW Code"></a><a class="EnlighterJSWindowButton" title="Open Code in new Window"></a><span class="clear"></span></div></div>
+<p id="a199" class="graf graf--p graf-after--pre">The plot_importance function allows to see the relative importance of all features in our model. Here we see that BILL_AMT1 and LIMIT_BAL are the most important features whilst sex and education seem to be less relevant</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="null" style="display: none;">plt.figure(figsize=(20,15))
+xgb.plot_importance(classifier, ax=plt.gca())</pre><div class="EnlighterJSWrapper enlighterEnlighterJSWrapper"><ol class="hoverEnabled enlighterEnlighterJS EnlighterJS"><li class=" odd"><span class="">plt.</span><span class="kw1">figure</span><span class="br0">(</span><span class="">figsize=</span><span class="br0">(</span><span class="nu0">20</span><span class="">,</span><span class="nu0">15</span><span class="br0">)</span><span class="br0">)</span><span class=""></span></li><li class=" even"><span class="">xgb.</span><span class="kw1">plot_importance</span><span class="br0">(</span><span class="">classifier, ax=plt.</span><span class="kw1">gca</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span></li></ol><pre style="display: none;">plt.figure(figsize=(20,15))
+xgb.plot_importance(classifier, ax=plt.gca())</pre><div class="EnlighterJSToolbar"><a class="EnlighterJSInfoButton" title="EnlighterJS Syntax Highlighter"></a><a class="EnlighterJSRawButton" title="Toggle RAW Code"></a><a class="EnlighterJSWindowButton" title="Open Code in new Window"></a><span class="clear"></span></div></div>
+<figure id="6175" class="graf graf--figure graf-after--pre">
+<div class="aspectRatioPlaceholder is-locked">
+<div class="aspectRatioPlaceholder-fill"></div>
+<div class="progressiveMedia js-progressiveMedia graf-image is-canvasLoaded is-imageLoaded" data-image-id="0*LKReAfC0_KbykUYv.png" data-width="1235" data-height="876" data-is-featured="true" data-action="zoom" data-action-value="0*LKReAfC0_KbykUYv.png" data-scroll="native"><img class="progressiveMedia-image js-progressiveMedia-image" src="./Getting started with XGBoost _ Cambridge Spark_files/0_LKReAfC0_KbykUYv.png" data-src="https://i0.wp.com/cdn-images-1.medium.com/max/1600/0*LKReAfC0_KbykUYv.png?w=1165&amp;ssl=1" width="1160" height="823"></div>
+</div>
+</figure>
+<p>&nbsp;</p>
+<p id="e002" class="graf graf--p graf-after--figure">Plot_tree allows to visualize the trees that were built by XGBoost</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="null" style="display: none;">plt.figure(figsize=(20,15))
+xgb.plot_tree(classifier, ax=plt.gca())</pre><div class="EnlighterJSWrapper enlighterEnlighterJSWrapper"><ol class="hoverEnabled enlighterEnlighterJS EnlighterJS"><li class=" odd"><span class="">plt.</span><span class="kw1">figure</span><span class="br0">(</span><span class="">figsize=</span><span class="br0">(</span><span class="nu0">20</span><span class="">,</span><span class="nu0">15</span><span class="br0">)</span><span class="br0">)</span><span class=""></span></li><li class=" even"><span class="">xgb.</span><span class="kw1">plot_tree</span><span class="br0">(</span><span class="">classifier, ax=plt.</span><span class="kw1">gca</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span></li></ol><pre style="display: none;">plt.figure(figsize=(20,15))
+xgb.plot_tree(classifier, ax=plt.gca())</pre><div class="EnlighterJSToolbar"><a class="EnlighterJSInfoButton" title="EnlighterJS Syntax Highlighter"></a><a class="EnlighterJSRawButton" title="Toggle RAW Code"></a><a class="EnlighterJSWindowButton" title="Open Code in new Window"></a><span class="clear"></span></div></div>
+<p>&nbsp;</p>
+<figure id="4347" class="graf graf--figure graf-after--pre">
+<div class="aspectRatioPlaceholder is-locked">
+<div class="aspectRatioPlaceholder-fill"></div>
+<div class="progressiveMedia js-progressiveMedia graf-image is-canvasLoaded is-imageLoaded" data-image-id="0*KQ5OcJPeuQALVKrc.png" data-width="1159" data-height="704" data-action="zoom" data-action-value="0*KQ5OcJPeuQALVKrc.png" data-scroll="native"><img class="progressiveMedia-image js-progressiveMedia-image" src="./Getting started with XGBoost _ Cambridge Spark_files/0_KQ5OcJPeuQALVKrc.png" data-src="https://i1.wp.com/cdn-images-1.medium.com/max/1600/0*KQ5OcJPeuQALVKrc.png?w=1165&amp;ssl=1" width="1159" height="704"></div>
+</div>
+</figure>
+<p>&nbsp;</p>
+<p id="0772" class="graf graf--p graf-after--figure">You can also access the characteristics of your model</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="null" style="display: none;">print("Number of boosting trees: {}".format(classifier.n_estimators))
+print("Max depth of trees: {}".format(classifier.max_depth))
+print("Objective function: {}".format(classifier.objective))
+Number of boosting trees: 100
+Max depth of trees: 3
+Objective function: binary:logistic</pre><div class="EnlighterJSWrapper enlighterEnlighterJSWrapper"><ol class="hoverEnabled enlighterEnlighterJS EnlighterJS"><li class=" odd"><span class="kw1">print</span><span class="br0">(</span><span class="st0">"Number of boosting trees: {}"</span><span class="">.</span><span class="kw1">format</span><span class="br0">(</span><span class="">classifier.n_estimators</span><span class="br0">)</span><span class="br0">)</span><span class=""></span></li><li class=" even"><span class=""></span><span class="kw1">print</span><span class="br0">(</span><span class="st0">"Max depth of trees: {}"</span><span class="">.</span><span class="kw1">format</span><span class="br0">(</span><span class="">classifier.max_depth</span><span class="br0">)</span><span class="br0">)</span><span class=""></span></li><li class=" odd"><span class=""></span><span class="kw1">print</span><span class="br0">(</span><span class="st0">"Objective function: {}"</span><span class="">.</span><span class="kw1">format</span><span class="br0">(</span><span class="">classifier.objective</span><span class="br0">)</span><span class="br0">)</span><span class=""></span></li><li class=" even"><span class="">Number of boosting trees: </span><span class="nu0">100</span><span class=""></span></li><li class=" odd"><span class="">Max depth of trees: </span><span class="nu0">3</span><span class=""></span></li><li class=" even"><span class="">Objective function: binary:logistic</span></li></ol><pre style="display: none;">print("Number of boosting trees: {}".format(classifier.n_estimators))
+print("Max depth of trees: {}".format(classifier.max_depth))
+print("Objective function: {}".format(classifier.objective))
+Number of boosting trees: 100
+Max depth of trees: 3
+Objective function: binary:logistic</pre><div class="EnlighterJSToolbar"><a class="EnlighterJSInfoButton" title="EnlighterJS Syntax Highlighter"></a><a class="EnlighterJSRawButton" title="Toggle RAW Code"></a><a class="EnlighterJSWindowButton" title="Open Code in new Window"></a><span class="clear"></span></div></div>
+<p id="9626" class="graf graf--p graf-after--pre">As you can see, there are many parameters that define your model. Those parameters can be set before training, and selecting the good values will boost the performance of your model. <a class="markup--anchor markup--p-anchor" href="https://cambridgespark.com/content/tutorials/hyperparameter-tuning-in-xgboost/index.html" target="_blank" rel="noopener" data-href="https://cambridgespark.com/content/tutorials/hyperparameter-tuning-in-xgboost/index.html">We go through ways of doing so in the next tutorial</a>.</p>
+</div>
+</div>
+</section>
+<section class="section section--body section--last">
+<div class="section-divider"></div>
+<div class="section-content">
+<div class="section-inner sectionLayout--insetColumn">
+<p id="231c" class="graf graf--p graf--leading"><strong class="markup--strong markup--p-strong">About the author, Kevin Lemagnen</strong></p>
+<p id="75eb" class="graf graf--p graf-after--p graf--trailing">Kevin is a Data Scientist working at a startup based in Cambridge that is using machine learning to solve problems for the energy industry. Prior to that he worked for 2 years at a large technology company, focusing on the Internet of Things. Kevin studied Nanotechnologies for his MSc and Physics, Electronics and Telecommunications for his BSc.</p>
+</div>
+</div>
+</section>
+<div id="themify_builder_content-1611" data-postid="1611" class="themify_builder_content themify_builder_content-1611 themify_builder">
+
+    </div>
+<!-- /themify_builder_content -->
+				
+			</div><!-- /.entry-content -->
+
+			
+		</div>
+		<!-- /.post-content-inner -->
+	</div>
+	<!-- /.post-content -->
+	
+</article>
+<!-- /.post -->
+
+			
+			
+			
+			
+		<div class="post-nav clearfix">
+			<span class="prev"><a href="https://cambridgespark.com/from-business-analyst-to-data-scientist/" rel="prev"><span class="arrow"></span> From Business Analyst to Data Scientist</a></span>			<span class="next"><a href="https://cambridgespark.com/introduction-to-python-workshop-22nd-october-2018/" rel="next"><span class="arrow"></span> Past IMC student event: 22nd October 2018 – Introduction to Python Workshop –  UCL</a></span>		</div>
+		<!-- /.post-nav -->
+
+	
+									<div class="related-posts">
+			<h4 class="related-title">Related Posts</h4>
+							<article class="post type-post clearfix">
+
+												<figure class="post-image clearfix">
+								<a href="https://cambridgespark.com/4046-2/"><img src="./Getting started with XGBoost _ Cambridge Spark_files/Copy-of-Copy-of-Copy-of-find-a-waynot-an-excuse-7-1024x576-394x330.png" width="394" height="330" class=" wp-post-image wp-image-4089" alt="Build your own Skip-gram Embeddings and use them in a Neural Network" srcset="https://i1.wp.com/cambridgespark.com/wp-content/uploads/2018/11/Copy-of-Copy-of-Copy-of-find-a-waynot-an-excuse-7.png?resize=394%2C330&amp;ssl=1 394w, https://i1.wp.com/cambridgespark.com/wp-content/uploads/2018/11/Copy-of-Copy-of-Copy-of-find-a-waynot-an-excuse-7.png?zoom=2&amp;resize=394%2C330&amp;ssl=1 788w, https://i1.wp.com/cambridgespark.com/wp-content/uploads/2018/11/Copy-of-Copy-of-Copy-of-find-a-waynot-an-excuse-7.png?zoom=3&amp;resize=394%2C330&amp;ssl=1 1182w" sizes="(max-width: 394px) 100vw, 394px"></a>
+							</figure>
+											
+					<div class="post-content">
+						<p class="post-meta">
+							 <span class="post-category"><a href="https://cambridgespark.com/category/blog/" rel="tag" class="term-blog">Blog</a><span class="separator">, </span><a href="https://cambridgespark.com/category/tutorials/" rel="tag" class="term-tutorials">Tutorials</a></span>						</p>
+						<h4 class="post-title">
+							<a href="https://cambridgespark.com/4046-2/" title="Build your own Skip-gram Embeddings and use them in a Neural Network">
+								Build your own Skip-gram Embeddings and use them in a Neural Network							</a>
+						</h4>
+											</div>
+					<!-- /.post-content -->
+
+					
+
+					
+				</article>
+							<article class="post type-post clearfix">
+
+												<figure class="post-image clearfix">
+								<a href="https://cambridgespark.com/practical-introduction-to-recommender-systems/"><img src="./Getting started with XGBoost _ Cambridge Spark_files/Copy-of-Copy-of-Copy-of-Copy-of-find-a-waynot-an-excuse-3-1024x576-394x330.png" width="394" height="330" class=" wp-post-image wp-image-3635" alt="Practical introduction to recommender systems" srcset="https://i0.wp.com/cambridgespark.com/wp-content/uploads/2018/10/Copy-of-Copy-of-Copy-of-Copy-of-find-a-waynot-an-excuse-3.png?resize=394%2C330&amp;ssl=1 394w, https://i0.wp.com/cambridgespark.com/wp-content/uploads/2018/10/Copy-of-Copy-of-Copy-of-Copy-of-find-a-waynot-an-excuse-3.png?zoom=2&amp;resize=394%2C330&amp;ssl=1 788w, https://i0.wp.com/cambridgespark.com/wp-content/uploads/2018/10/Copy-of-Copy-of-Copy-of-Copy-of-find-a-waynot-an-excuse-3.png?zoom=3&amp;resize=394%2C330&amp;ssl=1 1182w" sizes="(max-width: 394px) 100vw, 394px"></a>
+							</figure>
+											
+					<div class="post-content">
+						<p class="post-meta">
+							 <span class="post-category"><a href="https://cambridgespark.com/category/blog/" rel="tag" class="term-blog">Blog</a><span class="separator">, </span><a href="https://cambridgespark.com/category/tutorials/" rel="tag" class="term-tutorials">Tutorials</a></span>						</p>
+						<h4 class="post-title">
+							<a href="https://cambridgespark.com/practical-introduction-to-recommender-systems/" title="Practical Introduction to Recommender Systems">
+								Practical Introduction to Recommender Systems							</a>
+						</h4>
+											</div>
+					<!-- /.post-content -->
+
+					
+
+					
+				</article>
+							<article class="post type-post clearfix">
+
+												<figure class="post-image clearfix">
+								<a href="https://cambridgespark.com/deploying-a-machine-learning-model-to-the-web-2/"><img src="./Getting started with XGBoost _ Cambridge Spark_files/1_U7kEvSbzT0nFIDWkLYxopQ-1-1024x576-394x330.jpeg" width="394" height="330" class=" wp-post-image wp-image-2686" alt="1_U7kEvSbzT0nFIDWkLYxopQ" srcset="https://i2.wp.com/cambridgespark.com/wp-content/uploads/2018/09/1_U7kEvSbzT0nFIDWkLYxopQ-1.jpeg?resize=394%2C330&amp;ssl=1 394w, https://i2.wp.com/cambridgespark.com/wp-content/uploads/2018/09/1_U7kEvSbzT0nFIDWkLYxopQ-1.jpeg?zoom=2&amp;resize=394%2C330&amp;ssl=1 788w" sizes="(max-width: 394px) 100vw, 394px"></a>
+							</figure>
+											
+					<div class="post-content">
+						<p class="post-meta">
+							 <span class="post-category"><a href="https://cambridgespark.com/category/tutorials/" rel="tag" class="term-tutorials">Tutorials</a></span>						</p>
+						<h4 class="post-title">
+							<a href="https://cambridgespark.com/deploying-a-machine-learning-model-to-the-web-2/" title="Deploying a machine learning model to the web">
+								Deploying a machine learning model to the web							</a>
+						</h4>
+											</div>
+					<!-- /.post-content -->
+
+					
+
+					
+				</article>
+					</div>
+		<!-- /.related-posts -->
+				
+			
+					</div>
+		<!-- /content -->
+
+		
+		
+	</div>
+	<!-- /layout-container -->
+
+
+			</div><!-- /body -->
+
+							<div class="back-top clearfix back-top-float"><div class="arrow-up"><a href="https://cambridgespark.com/getting-started-with-xgboost/#header"></a></div></div><div id="footerwrap" class="active-revealing">
+										<footer id="footer" class="pagewidth clearfix" itemscope="itemscope" itemtype="https://schema.org/WPFooter">
+						
+						<div class="main-col first clearfix">
+							<div class="footer-left-wrap first">
+															
+																	<div class="social-widget">
+										<div id="themify-social-links-1006" class="widget themify-social-links"><ul class="social-links horizontal">
+							<li class="social-link-item facebook font-icon icon-large">
+								<a href="https://www.facebook.com/cambridgespark/" target="_blank"><i class="fa fa-facebook" style="color: #75c3bb;"></i>  </a>
+							</li>
+							<!-- /themify-link-item -->
+							<li class="social-link-item twitter font-icon icon-large">
+								<a href="https://twitter.com/CambridgeSpark" target="_blank"><i class="fa fa-twitter" style="color: #75c3bb;"></i>  </a>
+							</li>
+							<!-- /themify-link-item -->
+							<li class="social-link-item youtube font-icon icon-large">
+								<a href="https://www.youtube.com/channel/UCahjykidQbxUbEVbfN-pd7A" target="_blank"><i class="fa fa-youtube-play" style="color: #75c3bb;"></i>  </a>
+							</li>
+							<!-- /themify-link-item -->
+							<li class="social-link-item linkedin font-icon icon-large">
+								<a href="https://www.linkedin.com/school/cambridge-spark/" target="_blank"><i class="fa fa-linkedin" style="color: #75c3bb;"></i>  </a>
+							</li>
+							<!-- /themify-link-item --></ul></div>									</div>
+									<!-- /.social-widget -->
+															</div>
+							
+							<div class="footer-right-wrap">
+																	<div class="footer-nav-wrap">
+																			</div>
+									<!-- /.footer-nav-wrap -->
+								
+															</div>
+						</div>
+
+																					<div class="section-col clearfix">
+									<div class="footer-widgets-wrap">
+										
+		<div class="footer-widgets clearfix">
+							<div class="col4-1 first">
+					<div id="themify-feature-posts-1013" class="widget feature-posts"><h4 class="widgettitle">Recent Blog Posts</h4><ul class="feature-posts-list"><li><a aria-hidden="true" href="https://cambridgespark.com/bett-conference-2019/"><img src="./Getting started with XGBoost _ Cambridge Spark_files/EVENTS-BLOG-BANNER-1024x576-50x50.png" width="50" height="50" class="post-img wp-post-image wp-image-2180" alt="Cambridge Spark events"></a><a href="https://cambridgespark.com/bett-conference-2019/" class="feature-posts-title">Bett Conference – 23rd – 26th January 2019</a> <br><small>December 23, 2018</small> <br></li><li><a aria-hidden="true" href="https://cambridgespark.com/the-role-of-data-science-in-retail/"><img src="./Getting started with XGBoost _ Cambridge Spark_files/Screenshot-2018-11-30-at-23.12.55-50x50.png" width="50" height="50" class="post-img wp-post-image wp-image-4386" alt="Screenshot 2018-11-30 at 23.12.55" srcset="https://i0.wp.com/cambridgespark.com/wp-content/uploads/2018/11/Screenshot-2018-11-30-at-23.12.55.png?resize=50%2C50&amp;ssl=1 50w, https://i0.wp.com/cambridgespark.com/wp-content/uploads/2018/11/Screenshot-2018-11-30-at-23.12.55.png?resize=150%2C150&amp;ssl=1 150w, https://i0.wp.com/cambridgespark.com/wp-content/uploads/2018/11/Screenshot-2018-11-30-at-23.12.55.png?zoom=2&amp;resize=50%2C50&amp;ssl=1 100w" sizes="(max-width: 50px) 100vw, 50px"></a><a href="https://cambridgespark.com/the-role-of-data-science-in-retail/" class="feature-posts-title">The Role of Data Science in Retail</a> <br><small>November 30, 2018</small> <br></li><li><a aria-hidden="true" href="https://cambridgespark.com/python-context-manager/"><img src="./Getting started with XGBoost _ Cambridge Spark_files/Why-economists-should-embrace-Data-Science-5-1024x576-50x50.png" width="50" height="50" class="post-img wp-post-image wp-image-4200" alt="Why economists should embrace Data Science"></a><a href="https://cambridgespark.com/python-context-manager/" class="feature-posts-title">Why Economists should embrace Data Science</a> <br><small>November 22, 2018</small> <br></li></ul></div>				</div>
+							<div class="col4-1 ">
+					<div id="nav_menu-2" class="widget widget_nav_menu"><h4 class="widgettitle">Quick Links</h4><div class="menu-footer-menu-container"><ul id="menu-footer-menu" class="menu"><li id="menu-item-907" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-907"><a href="https://cambridgespark.com/about/">About</a></li>
+<li id="menu-item-908" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-908"><a href="https://cambridgespark.com/consulting/">Consulting</a></li>
+<li id="menu-item-1148" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1148"><a href="https://cambridgespark.com/applied-data-science-journey/">Applied Data Science Journey</a></li>
+<li id="menu-item-954" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-954"><a href="https://cambridgespark.com/career/">Career Resources</a></li>
+<li id="menu-item-4141" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4141"><a href="https://cambridgespark.com/jobs/">Jobs</a></li>
+<li id="menu-item-1962" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1962"><a href="https://cambridgespark.com/press-releases/">Press Releases</a></li>
+<li id="menu-item-906" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-906"><a href="https://cambridgespark.com/contact/">Contact</a></li>
+</ul></div></div>				</div>
+							<div class="col4-1 ">
+					<div id="nav_menu-3" class="widget widget_nav_menu"><h4 class="widgettitle">Onsite Courses</h4><div class="menu-onsite-courses-container"><ul id="menu-onsite-courses" class="menu"><li id="menu-item-1818" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1818"><a href="https://cambridgespark.com/onsite-courses/core-data-science/">Core Data Science</a></li>
+<li id="menu-item-4486" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4486"><a href="https://cambridgespark.com/data-science-in-production-with-python/">Data Science in Production with Python</a></li>
+<li id="menu-item-1815" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1815"><a href="https://cambridgespark.com/onsite-courses/introduction-to-big-data-and-pyspark/">Introduction to Big Data and PySpark</a></li>
+<li id="menu-item-1813" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1813"><a href="https://cambridgespark.com/onsite-courses/regression-and-time-series/">Regression and Time Series</a></li>
+<li id="menu-item-1816" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1816"><a href="https://cambridgespark.com/onsite-courses/python-machine-learning/">Python Machine Learning</a></li>
+<li id="menu-item-3727" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3727"><a href="https://cambridgespark.com/onsite-courses/python-for-analysts/">Python for Analysts</a></li>
+<li id="menu-item-3726" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3726"><a href="https://cambridgespark.com/onsite-courses/python-for-engineers/">Python for Engineers</a></li>
+<li id="menu-item-1814" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1814"><a href="https://cambridgespark.com/onsite-courses/pragmatic-python-programming/">Pragmatic Python Programming</a></li>
+<li id="menu-item-3964" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3964"><a href="https://cambridgespark.com/data-science-seminar/">Data Science for Executives</a></li>
+</ul></div></div>				</div>
+							<div class="col4-1 ">
+					<div id="custom_html-2" class="widget_text widget widget_custom_html"><h4 class="widgettitle">SUBSCRIBE TO OUR NEWSLETTER</h4><div class="textwidget custom-html-widget"><!--[if lte IE 8]>
+<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+<![endif]-->
+<script charset="utf-8" type="text/javascript" src="./Getting started with XGBoost _ Cambridge Spark_files/v2.js"></script>
+<script data-hubspot-rendered="true">
+  hbspt.forms.create({
+	portalId: "4132242",
+	formId: "b85317b5-8170-42ee-866d-94bb03003e62",
+	css: ""
+});
+</script><div class="hbspt-form" id="hbspt-form-1545601208556-7526889908"><form novalidate="" accept-charset="UTF-8" action="https://forms.hsforms.com/submissions/v3/public/submit/formsnext/multipart/4132242/b85317b5-8170-42ee-866d-94bb03003e62" enctype="multipart/form-data" id="hsForm_b85317b5-8170-42ee-866d-94bb03003e62" method="POST" class="hs-form stacked hs-form-private hs-form-b85317b5-8170-42ee-866d-94bb03003e62_9b83e8e9-49e3-409b-a0ca-05ccf24aa303" data-form-id="b85317b5-8170-42ee-866d-94bb03003e62" data-portal-id="4132242" target="target_iframe_b85317b5-8170-42ee-866d-94bb03003e62" data-reactid=".hbspt-forms-0"><div class="hs_firstname hs-firstname hs-fieldtype-text field hs-form-field" data-reactid=".hbspt-forms-0.1:$0"><label id="label-firstname-b85317b5-8170-42ee-866d-94bb03003e62" class="" placeholder="Enter your First name" for="firstname-b85317b5-8170-42ee-866d-94bb03003e62" data-reactid=".hbspt-forms-0.1:$0.0"><span data-reactid=".hbspt-forms-0.1:$0.0.0">First name</span><span class="hs-form-required" data-reactid=".hbspt-forms-0.1:$0.0.1">*</span></label><legend class="hs-field-desc" style="display:none;" data-reactid=".hbspt-forms-0.1:$0.1"></legend><div class="input" data-reactid=".hbspt-forms-0.1:$0.$firstname"><input id="firstname-b85317b5-8170-42ee-866d-94bb03003e62" class="hs-input" type="text" name="firstname" required="" value="" placeholder="" autocomplete="given-name" data-reactid=".hbspt-forms-0.1:$0.$firstname.0"></div></div><div class="hs_email hs-email hs-fieldtype-text field hs-form-field" data-reactid=".hbspt-forms-0.1:$1"><label id="label-email-b85317b5-8170-42ee-866d-94bb03003e62" class="" placeholder="Enter your Email" for="email-b85317b5-8170-42ee-866d-94bb03003e62" data-reactid=".hbspt-forms-0.1:$1.0"><span data-reactid=".hbspt-forms-0.1:$1.0.0">Email</span><span class="hs-form-required" data-reactid=".hbspt-forms-0.1:$1.0.1">*</span></label><legend class="hs-field-desc" style="display:none;" data-reactid=".hbspt-forms-0.1:$1.1"></legend><div class="input" data-reactid=".hbspt-forms-0.1:$1.$email"><input id="email-b85317b5-8170-42ee-866d-94bb03003e62" class="hs-input" type="email" name="email" required="" placeholder="" value="" autocomplete="email" data-reactid=".hbspt-forms-0.1:$1.$email.0"></div></div><div class="legal-consent-container" data-reactid=".hbspt-forms-0.2"><div class="hs-richtext" data-reactid=".hbspt-forms-0.2.0"><p></p></div><div data-reactid=".hbspt-forms-0.2.1:0"><div class="hs-dependent-field" data-reactid=".hbspt-forms-0.2.1:0.$LEGAL_CONSENT=1subscription_type_4609773"><div class="hs_LEGAL_CONSENT.subscription_type_4609773 hs-LEGAL_CONSENT.subscription_type_4609773 hs-fieldtype-booleancheckbox field hs-form-field" data-reactid=".hbspt-forms-0.2.1:0.$LEGAL_CONSENT=1subscription_type_4609773.$LEGAL_CONSENT=1subscription_type_4609773"><legend class="hs-field-desc" style="display:none;" data-reactid=".hbspt-forms-0.2.1:0.$LEGAL_CONSENT=1subscription_type_4609773.$LEGAL_CONSENT=1subscription_type_4609773.1"></legend><div class="input" data-reactid=".hbspt-forms-0.2.1:0.$LEGAL_CONSENT=1subscription_type_4609773.$LEGAL_CONSENT=1subscription_type_4609773.$LEGAL_CONSENT=1subscription_type_4609773"><ul class="inputs-list" data-reactid=".hbspt-forms-0.2.1:0.$LEGAL_CONSENT=1subscription_type_4609773.$LEGAL_CONSENT=1subscription_type_4609773.$LEGAL_CONSENT=1subscription_type_4609773.0"><li class="hs-form-booleancheckbox" data-reactid=".hbspt-forms-0.2.1:0.$LEGAL_CONSENT=1subscription_type_4609773.$LEGAL_CONSENT=1subscription_type_4609773.$LEGAL_CONSENT=1subscription_type_4609773.0.0"><label for="LEGAL_CONSENT.subscription_type_4609773-b85317b5-8170-42ee-866d-94bb03003e62" class="hs-form-booleancheckbox-display" data-reactid=".hbspt-forms-0.2.1:0.$LEGAL_CONSENT=1subscription_type_4609773.$LEGAL_CONSENT=1subscription_type_4609773.$LEGAL_CONSENT=1subscription_type_4609773.0.0.0"><input id="LEGAL_CONSENT.subscription_type_4609773-b85317b5-8170-42ee-866d-94bb03003e62" class="hs-input" type="checkbox" name="LEGAL_CONSENT.subscription_type_4609773" value="true" data-reactid=".hbspt-forms-0.2.1:0.$LEGAL_CONSENT=1subscription_type_4609773.$LEGAL_CONSENT=1subscription_type_4609773.$LEGAL_CONSENT=1subscription_type_4609773.0.0.0.0"><span data-reactid=".hbspt-forms-0.2.1:0.$LEGAL_CONSENT=1subscription_type_4609773.$LEGAL_CONSENT=1subscription_type_4609773.$LEGAL_CONSENT=1subscription_type_4609773.0.0.0.1"><span>Tick here to opt-in to receive communications by email</span></span></label></li></ul></div></div></div><legend class="hs-field-desc checkbox-desc" style="display:none;" data-reactid=".hbspt-forms-0.2.1:0.1"></legend></div><div class="hs-richtext" data-reactid=".hbspt-forms-0.2.2"><p></p></div><div class="hs-richtext" data-reactid=".hbspt-forms-0.2.3"><p></p></div></div><div class="hs_submit hs-submit" data-reactid=".hbspt-forms-0.5"><div class="hs-field-desc" style="display:none;" data-reactid=".hbspt-forms-0.5.0"></div><div class="actions" data-reactid=".hbspt-forms-0.5.1"><input type="submit" value="Submit" class="hs-button primary large" data-reactid=".hbspt-forms-0.5.1.0"></div></div><noscript data-reactid=".hbspt-forms-0.6"></noscript><input name="hs_context" type="hidden" value="{&quot;rumScriptExecuteTime&quot;:755.6999999978871,&quot;rumServiceResponseTime&quot;:987.0999999984633,&quot;rumFormRenderTime&quot;:0.800000001618173,&quot;rumTotalRenderTime&quot;:1281.1000000001513,&quot;rumTotalRequestTime&quot;:221.79999999934807,&quot;lang&quot;:&quot;en&quot;,&quot;notifyHubSpotOwner&quot;:&quot;true&quot;,&quot;disableCookieSubmission&quot;:true,&quot;isLegacyThemeAllowed&quot;:&quot;true&quot;,&quot;legalConsentOptions&quot;:&quot;{\&quot;legitimateInterestSubscriptionTypes\&quot;:[4609995],\&quot;communicationConsentCheckboxes\&quot;:[{\&quot;communicationTypeId\&quot;:4609773,\&quot;label\&quot;:\&quot;&lt;span&gt;Tick here to opt-in to receive communications by email&lt;/span&gt;\&quot;,\&quot;required\&quot;:false}],\&quot;legitimateInterestLegalBasis\&quot;:\&quot;LEGITIMATE_INTEREST_PQL\&quot;,\&quot;communicationConsentText\&quot;:\&quot;&lt;p&gt;&lt;/p&gt;\&quot;,\&quot;processingConsentType\&quot;:\&quot;IMPLICIT\&quot;,\&quot;processingConsentText\&quot;:\&quot;&lt;p&gt;&lt;/p&gt;\&quot;,\&quot;processingConsentCheckboxLabel\&quot;:\&quot;I agree to allow Cambridge Spark to store and process my personal data.\&quot;,\&quot;privacyPolicyText\&quot;:\&quot;&lt;p&gt;&lt;/p&gt;\&quot;,\&quot;isLegitimateInterest\&quot;:false}&quot;,&quot;pageUrl&quot;:&quot;https://cambridgespark.com/getting-started-with-xgboost/&quot;,&quot;pageTitle&quot;:&quot;Getting started with XGBoost | Cambridge Spark&quot;,&quot;source&quot;:&quot;FormsNext-static-3.147&quot;,&quot;timestamp&quot;:1545601208620,&quot;userAgent&quot;:&quot;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36&quot;,&quot;referrer&quot;:&quot;https://cambridgespark.com/content/tutorials/getting-started-with-xgboost/index.html&quot;,&quot;originalEmbedContext&quot;:{&quot;portalId&quot;:&quot;4132242&quot;,&quot;formId&quot;:&quot;b85317b5-8170-42ee-866d-94bb03003e62&quot;,&quot;target&quot;:&quot;#hbspt-form-1545601208556-7526889908&quot;,&quot;hutk&quot;:&quot;71e9175d43775222e97c982ea1082fe4&quot;,&quot;inlineMessage&quot;:true,&quot;contentType&quot;:&quot;blog-post&quot;},&quot;boolCheckBoxFields&quot;:&quot;LEGAL_CONSENT.subscription_type_4609773&quot;,&quot;formTarget&quot;:&quot;#hbspt-form-1545601208556-7526889908&quot;,&quot;correlationId&quot;:&quot;06a10563-eb81-49a0-922f-e4020c996c31&quot;,&quot;contentType&quot;:&quot;blog-post&quot;}" data-reactid=".hbspt-forms-0.7"><iframe name="target_iframe_b85317b5-8170-42ee-866d-94bb03003e62" style="display:none;" data-reactid=".hbspt-forms-0.8" src="./Getting started with XGBoost _ Cambridge Spark_files/saved_resource.html"></iframe></form></div></div></div>				</div>
+					</div>
+		<!-- /.footer-widgets -->
+
+											<!-- /footer-widgets -->
+									</div>
+								</div>
+								<div class="footer-text clearfix">
+									<div class="footer-text-inner">
+										<div class="one"><p class="copyright">© Cambridge Spark 2018 </p>
+<div class="legal"><a href="https://s3-eu-west-1.amazonaws.com/com.cambridgespark.pdf/CambridgeSparkTCs.pdf">Terms and conditions</a>
+<a href="https://s3-eu-west-1.amazonaws.com/com.cambridgespark.pdf/CambridgeSparkPrivacyPolicy.pdf">Privacy Policy</a>
+<a href="https://s3-eu-west-1.amazonaws.com/com.cambridgespark.pdf/CambridgeSparkCookiesPolicy.pdf">Cookies Policy</a>
+</div></div>									</div>
+								</div>
+								<!-- /.footer-text -->
+													
+											</footer><!-- /#footer -->
+
+					
+				</div><!-- /#footerwrap -->
+			
+		</div><!-- /#pagewrap -->
+
+		
+		<!-- SCHEMA BEGIN --><script type="application/ld+json">[{"@context":"https:\/\/schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/cambridgespark.com\/getting-started-with-xgboost\/"},"headline":"Getting started with XGBoost","datePublished":"2018-09-12T11:25:11+00:00","dateModified":"2018-09-12T11:25:11+00:00","author":{"@type":"Person","name":"Cambridge Spark - Data Science Courses"},"publisher":{"@type":"Organization","name":"","logo":{"@type":"ImageObject","url":"","width":0,"height":0}},"description":"What is\u00a0XGBoost? XGBoost stands for Extreme Gradient Boosting, it is a performant machine learning library based on the paper Greedy Function Approximation: A Gradient Boosting Machine, by Friedman. XGBoost implements a Gradient Boosting algorithm based on decision trees. The gradient boosting algorithm If you are already familiar with Random Forests, the Gradient Boosting algorithm implemented [&hellip;]","commentCount":"0","image":{"@type":"ImageObject","url":"https:\/\/i2.wp.com\/cambridgespark.com\/wp-content\/uploads\/2018\/09\/jantine-doornbos-711322-unsplash-e1537868790739.jpg?fit=1024%2C683&ssl=1","width":1024,"height":683}}]</script><!-- /SCHEMA END -->		<!-- wp_footer -->
+		<!--  -->
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '379460215805063'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+               src="https://www.facebook.com/tr?id=379460215805063&ev=PageView&noscript=1"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '279250705899317',
+      xfbml      : true,
+      version    : 'v2.10'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<!-- linkedin -->
+<script type="text/javascript">
+_linkedin_partner_id = "410484";
+window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+</script><script type="text/javascript">
+(function(){var s = document.getElementsByTagName("script")[0];
+var b = document.createElement("script");
+b.type = "text/javascript";b.async = true;
+b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+s.parentNode.insertBefore(b, s);})();
+</script>
+<noscript>
+    <img height="1" width="1" style="display:none;" alt="" src="https://dc.ads.linkedin.com/collect/?pid=410484&fmt=gif" />
+</noscript>
+
+<!-- quora -->
+<!-- DO NOT MODIFY -->
+<!-- Quora Pixel Code (JS Helper) -->
+<script>
+!function(q,e,v,n,t,s){if(q.qp) return; n=q.qp=function(){n.qp?n.qp.apply(n,arguments):n.queue.push(arguments);}; n.queue=[];t=document.createElement(e);t.async=!0;t.src=v; s=document.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);}(window, 'script', 'https://a.quora.com/qevents.js');
+qp('init', '92edf07aed1046609b18103513f6c06b');
+qp('track', 'ViewContent');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://q.quora.com/_/ad/92edf07aed1046609b18103513f6c06b/pixel?tag=ViewContent&noscript=1"/></noscript>
+<!-- End of Quora Pixel Code -->
+
+<!-- Facebook Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '309468679871011');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=309468679871011&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code --><!-- Your Google Analytics Plugin is missing the tracking ID -->
+	<div style="display:none">
+	</div>
+<script type="text/javascript">
+/* <![CDATA[ */
+var themify_vars = {"version":"4.1.5","url":"https:\/\/cambridgespark.com\/wp-content\/themes\/themify-ultra\/themify","map_key":null,"includesURL":"https:\/\/cambridgespark.com\/wp-includes\/","isCached":"on","minify":{"css":{"themify-icons":1,"themify.framework":1,"lightbox":1,"themify-builder-style":1},"js":{"backstretch.themify-version":1,"bigvideo":1,"themify.dropdown":1,"themify-tiles":1,"themify.mega-menu":1,"themify.builder.script":1,"themify.scroll-highlight":1,"themify-youtube-bg":1,"themify.parallaxit":1,"themify.ticks":1}}};
+var tbLocalScript = {"isAnimationActive":"1","isParallaxActive":"1","isParallaxScrollActive":"1","isStickyScrollActive":"1","animationInviewSelectors":[".module.wow",".module_row.wow",".builder-posts-wrap > .post.wow"],"backgroundSlider":{"autoplay":5000},"animationOffset":"100","videoPoster":"https:\/\/cambridgespark.com\/wp-content\/themes\/themify-ultra\/themify\/themify-builder\/img\/blank.png","backgroundVideoLoop":"yes","builder_url":"https:\/\/cambridgespark.com\/wp-content\/themes\/themify-ultra\/themify\/themify-builder","framework_url":"https:\/\/cambridgespark.com\/wp-content\/themes\/themify-ultra\/themify","version":"4.1.5","fullwidth_support":"","fullwidth_container":"body","loadScrollHighlight":"1","addons":[],"breakpoints":{"tablet_landscape":[769,"1024"],"tablet":[681,"768"],"mobile":"680"},"ticks":{"tick":30,"ajaxurl":"https:\/\/cambridgespark.com\/wp-admin\/admin-ajax.php","postID":1611}};
+var themifyScript = {"lightbox":{"lightboxSelector":".themify_lightbox","lightboxOn":true,"lightboxContentImages":false,"lightboxContentImagesSelector":"","theme":"pp_default","social_tools":false,"allow_resize":true,"show_title":false,"overlay_gallery":false,"screenWidthNoLightbox":600,"deeplinking":false,"contentImagesAreas":"","gallerySelector":".gallery-icon > a","lightboxGalleryOn":true},"lightboxContext":"body"};
+var tbScrollHighlight = {"fixedHeaderSelector":"#headerwrap.fixed-header","speed":"900","navigation":"#main-nav, .module-menu .ui.nav","scrollOffset":"-5","scroll":"internal"};
+/* ]]> */
+</script>
+<script type="text/javascript" defer="defer" src="./Getting started with XGBoost _ Cambridge Spark_files/main.min.js"></script>
+<script type="text/javascript" src="./Getting started with XGBoost _ Cambridge Spark_files/photon.min.js"></script>
+<script type="text/javascript" src="./Getting started with XGBoost _ Cambridge Spark_files/64ce0a003b23d8d29098bed39892746a.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var leadin_wordpress = {"userRole":"visitor","pageType":"post","leadinPluginVersion":"7.0.1"};
+/* ]]> */
+</script>
+<script type="text/javascript" async="" defer="" src="./Getting started with XGBoost _ Cambridge Spark_files/ee08d9b8b2feffeadd44cb43718e1061.js"></script>
+<script type="text/javascript" src="./Getting started with XGBoost _ Cambridge Spark_files/6bda483ab6a9717bdc89ea5a7c272e21.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Getting started with XGBoost _ Cambridge Spark_files/4fdbb346db228ebd4947da0da9117958.js"></script>
+<script type="text/javascript" src="./Getting started with XGBoost _ Cambridge Spark_files/queuehandler.min.js"></script>
+<script type="text/javascript" defer="defer" src="./Getting started with XGBoost _ Cambridge Spark_files/themify.sidemenu.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var themifyScript = {"themeURI":"https:\/\/cambridgespark.com\/wp-content\/themes\/themify-ultra","lightbox":{"lightboxSelector":".themify_lightbox","lightboxOn":true,"lightboxContentImages":false,"lightboxContentImagesSelector":"","theme":"pp_default","social_tools":false,"allow_resize":true,"show_title":false,"overlay_gallery":false,"screenWidthNoLightbox":600,"deeplinking":false,"contentImagesAreas":"","gallerySelector":".gallery-icon > a","lightboxGalleryOn":true},"lightboxContext":"#pagewrap","fixedHeader":"","sticky_header":"","ajax_nonce":"a41cc11a7e","ajax_url":"https:\/\/cambridgespark.com\/wp-admin\/admin-ajax.php","smallScreen":"760","resizeRefresh":"250","parallaxHeader":"1","loadingImg":"https:\/\/cambridgespark.com\/wp-content\/themes\/themify-ultra\/images\/loading.gif","maxPages":"0","currentPage":"1","pageLoaderEffect":"","autoInfinite":"no","bufferPx":"50","infiniteURL":"0","scrollToNewOnLoad":"scroll","resetFilterOnLoad":"reset","fullPageScroll":"","shop_masonry":"no","tiledata":{"grids":{"post":{"1":["AAAA"],"2":["BBCC","BBCC"],"3":["DD.."],"4":[".EEF",".EEF"],"5":["DD..","BBCC","BBCC"],"6":[".EEF",".EEF","BBCC","BBCC"],"7":[".EEF",".EEF","DD.."],"8":[".EEF",".EEF","DD..","AAAA"],"9":[".EEF",".EEF","DD..","BBCC","BBCC"],"10":[".EEF",".EEF","DD..","MMNN","MMPP"],"11":[".EEF",".EEF","DD..","MMNN","MMPP","AAAA"],"12":[".EEF",".EEF","DD..","MMNN","MMPP","BBCC","BBCC"],"13":[".EEF",".EEF","DD..","MMNN","MMPP","LSRR","LSRR"]},"mobile":["AA",".."]},"default_grid":"post","small_screen_grid":"mobile","breakpoint":800,"padding":5,"full_width":false,"animate_init":false,"animate_resize":true,"animate_template":false},"responsiveBreakpoints":{"tablet_landscape":"1024","tablet":"768","mobile":"680"}};
+/* ]]> */
+</script>
+<script type="text/javascript" defer="defer" src="./Getting started with XGBoost _ Cambridge Spark_files/themify.script.min.js"></script>
+<script type="text/javascript" src="./Getting started with XGBoost _ Cambridge Spark_files/e589a247ce9486360d1cbd652bd850fe.js"></script>
+<script type="text/javascript" src="./Getting started with XGBoost _ Cambridge Spark_files/EnlighterJS.min.js"></script>
+<script type="text/javascript" src="./Getting started with XGBoost _ Cambridge Spark_files/wp-embed.min.js"></script>
+<script type="text/javascript" src="./Getting started with XGBoost _ Cambridge Spark_files/milestone.min.js"></script>
+<script type="text/javascript">/* <![CDATA[ */EnlighterJS_Config = {"selector":{"block":"pre.EnlighterJSRAW","inline":"code.EnlighterJSRAW"},"language":"generic","theme":"enlighter","indent":2,"hover":"hoverEnabled","showLinenumbers":true,"rawButton":true,"infoButton":true,"windowButton":true,"rawcodeDoubleclick":false,"grouping":true,"cryptex":{"enabled":false,"email":"mail@example.tld"}};!function(){var a=function(a){var b="Enlighter Error: ";console.error?console.error(b+a):console.log&&console.log(b+a)};return window.addEvent?"undefined"==typeof EnlighterJS?void a("Javascript Resources not loaded yet!"):"undefined"==typeof EnlighterJS_Config?void a("Configuration not loaded yet!"):void window.addEvent("domready",function(){EnlighterJS.Util.Init(EnlighterJS_Config.selector.block,EnlighterJS_Config.selector.inline,EnlighterJS_Config)}):void a("MooTools Framework not loaded yet!")}();;/* ]]> */</script><script type="text/javascript" src="./Getting started with XGBoost _ Cambridge Spark_files/e-201851.js" async="async" defer="defer"></script>
+<script type="text/javascript">
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:6.8.1',blog:'147967137',post:'1611',tz:'0',srv:'cambridgespark.com'} ]);
+	_stq.push([ 'clickTrackerInit', '147967137', '1611' ]);
+</script>
+
+
+	
+<link rel="stylesheet" href="./Getting started with XGBoost _ Cambridge Spark_files/font-awesome.min.css" media="all" id="774141255"><link rel="stylesheet" href="./Getting started with XGBoost _ Cambridge Spark_files/themify-icons.min.css" media="all" id="-1314080862"><div class="body-overlay"></div><img src="./Getting started with XGBoost _ Cambridge Spark_files/g.gif" alt=":)" width="6" height="5" id="wpstats"><div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./Getting started with XGBoost _ Cambridge Spark_files/j-GHT1gpo6-.html" style="border: none;"></iframe></div><div></div></div></div><script src="./Getting started with XGBoost _ Cambridge Spark_files/saved_resource" type="text/javascript"></script></body></html>

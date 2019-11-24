@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<!-- saved from url=(0072)https://lightgbm.readthedocs.io/en/latest/_modules/lightgbm/sklearn.html -->
+<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" lang="en" style=""><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>lightgbm.sklearn — LightGBM  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="./lightgbm.sklearn — LightGBM documentation_files/theme.css" type="text/css">
+  <link rel="stylesheet" href="./lightgbm.sklearn — LightGBM documentation_files/pygments.css" type="text/css">
+    <link rel="index" title="Index" href="https://lightgbm.readthedocs.io/en/latest/genindex.html">
+    <link rel="search" title="Search" href="https://lightgbm.readthedocs.io/en/latest/search.html"> 
+
+  
+  <script async="" src="./lightgbm.sklearn — LightGBM documentation_files/analytics.js"></script><script src="./lightgbm.sklearn — LightGBM documentation_files/modernizr.min.js"></script>
+
+
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="https://lightgbm.readthedocs.io/en/latest/_modules/lightgbm/sklearn.html">
+
+<link rel="stylesheet" href="./lightgbm.sklearn — LightGBM documentation_files/readthedocs-doc-embed.css" type="text/css">
+
+<script type="text/javascript" src="./lightgbm.sklearn — LightGBM documentation_files/readthedocs-data.js"></script>
+
+<!-- Add page-specific data, which must exist in the page js, not global -->
+<script type="text/javascript">
+READTHEDOCS_DATA['page'] = '_modules/lightgbm/sklearn'
+</script>
+
+<script type="text/javascript" src="./lightgbm.sklearn — LightGBM documentation_files/readthedocs-analytics.js"></script>
+
+<!-- end RTD <extrahead> -->
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="https://lightgbm.readthedocs.io/en/latest/index.html" class="icon icon-home"> LightGBM
+          
+
+          
+          </a>
+
+          
+            
+            
+            
+              <div class="version">
+                latest
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="https://lightgbm.readthedocs.io/en/latest/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://lightgbm.readthedocs.io/en/latest/Installation-Guide.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://lightgbm.readthedocs.io/en/latest/Quick-Start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://lightgbm.readthedocs.io/en/latest/Python-Intro.html">Python Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://lightgbm.readthedocs.io/en/latest/Features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://lightgbm.readthedocs.io/en/latest/Experiments.html">Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://lightgbm.readthedocs.io/en/latest/Parameters.html">Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://lightgbm.readthedocs.io/en/latest/Parameters-Tuning.html">Parameters Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://lightgbm.readthedocs.io/en/latest/Python-API.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://lightgbm.readthedocs.io/en/latest/Parallel-Learning-Guide.html">Parallel Learning Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://lightgbm.readthedocs.io/en/latest/GPU-Tutorial.html">GPU Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://lightgbm.readthedocs.io/en/latest/Advanced-Topics.html">Advanced Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://lightgbm.readthedocs.io/en/latest/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://lightgbm.readthedocs.io/en/latest/Development-Guide.html">Development Guide</a></li>
+</ul>
+
+            
+          
+        </div>
+      <div id="rtd-ut6lnli6k" class="ethical-rtd ethical-dark-theme"><div class="ethical-sidebar"><div class="ethical-content"><a href="https://readthedocs.org/sustainability/click/194/LOChKn1wXMkb/" rel="nofollow" target="_blank" class="ethical-image-link"><img src="./lightgbm.sklearn — LightGBM documentation_files/english-house.png"></a><div class="ethical-text"><b>Reach over 7 million devs</b> each month when you <a href="https://readthedocs.org/sustainability/click/194/LOChKn1wXMkb/" rel="nofollow" target="_blank">advertise with Read the Docs</a>.</div></div><div class="ethical-callout"><small><em><a href="https://readthedocs.org/sustainability/advertising/">Sponsored</a><span> · </span><a href="https://docs.readthedocs.io/en/latest/ethical-advertising.html">Ads served ethically</a></em></small></div></div><img src="./lightgbm.sklearn — LightGBM documentation_files/saved_resource" style="display: none;"></div></div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="https://lightgbm.readthedocs.io/en/latest/index.html">LightGBM</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content" style="max-width: none !important;">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="https://lightgbm.readthedocs.io/en/latest/index.html">Docs</a> »</li>
+        
+          <li><a href="https://lightgbm.readthedocs.io/en/latest/_modules/index.html">Module code</a> »</li>
+        
+      <li>lightgbm.sklearn</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for lightgbm.sklearn</h1><div class="highlight"><pre><span></span><span class="c1"># coding: utf-8</span>
+<span class="c1"># pylint: disable = invalid-name, W0105, C0111, C0301</span>
+<span class="sd">"""Scikit-learn wrapper interface for LightGBM."""</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">from</span> <span class="nn">.basic</span> <span class="k">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">LightGBMError</span>
+<span class="kn">from</span> <span class="nn">.compat</span> <span class="k">import</span> <span class="p">(</span><span class="n">SKLEARN_INSTALLED</span><span class="p">,</span> <span class="n">_LGBMClassifierBase</span><span class="p">,</span>
+                     <span class="n">LGBMNotFittedError</span><span class="p">,</span> <span class="n">_LGBMLabelEncoder</span><span class="p">,</span> <span class="n">_LGBMModelBase</span><span class="p">,</span>
+                     <span class="n">_LGBMRegressorBase</span><span class="p">,</span> <span class="n">_LGBMCheckXY</span><span class="p">,</span> <span class="n">_LGBMCheckArray</span><span class="p">,</span> <span class="n">_LGBMCheckConsistentLength</span><span class="p">,</span>
+                     <span class="n">_LGBMAssertAllFinite</span><span class="p">,</span> <span class="n">_LGBMCheckClassificationTargets</span><span class="p">,</span> <span class="n">_LGBMComputeSampleWeight</span><span class="p">,</span>
+                     <span class="n">argc_</span><span class="p">,</span> <span class="n">range_</span><span class="p">,</span> <span class="n">string_type</span><span class="p">,</span> <span class="n">DataFrame</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">.engine</span> <span class="k">import</span> <span class="n">train</span>
+
+
+<span class="k">def</span> <span class="nf">_objective_function_wrapper</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="sd">"""Decorate an objective function.</span>
+
+<span class="sd">    Note</span>
+<span class="sd">    ----</span>
+<span class="sd">    For multi-class task, the y_pred is group by class_id first, then group by row_id.</span>
+<span class="sd">    If you want to get i-th row y_pred in j-th class, the access way is y_pred[j * num_data + i]</span>
+<span class="sd">    and you should group grad and hess in this way as well.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    func : callable</span>
+<span class="sd">        Expects a callable with signature ``func(y_true, y_pred)`` or ``func(y_true, y_pred, group):</span>
+
+<span class="sd">            y_true : array-like of shape = [n_samples]</span>
+<span class="sd">                The target values.</span>
+<span class="sd">            y_pred : array-like of shape = [n_samples] or shape = [n_samples * n_classes] (for multi-class task)</span>
+<span class="sd">                The predicted values.</span>
+<span class="sd">            group : array-like</span>
+<span class="sd">                Group/query data, used for ranking task.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    new_func : callable</span>
+<span class="sd">        The new objective function as expected by ``lightgbm.engine.train``.</span>
+<span class="sd">        The signature is ``new_func(preds, dataset)``:</span>
+
+<span class="sd">            preds : array-like of shape = [n_samples] or shape = [n_samples * n_classes] (for multi-class task)</span>
+<span class="sd">                The predicted values.</span>
+<span class="sd">            dataset : Dataset</span>
+<span class="sd">                The training set from which the labels will be extracted using ``dataset.get_label()``.</span>
+<span class="sd">    """</span>
+    <span class="k">def</span> <span class="nf">inner</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">dataset</span><span class="p">):</span>
+        <span class="sd">"""Call passed function with appropriate arguments."""</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">get_label</span><span class="p">()</span>
+        <span class="n">argc</span> <span class="o">=</span> <span class="n">argc_</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">argc</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">grad</span><span class="p">,</span> <span class="n">hess</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">argc</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">grad</span><span class="p">,</span> <span class="n">hess</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">preds</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">get_group</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"Self-defined objective function should have 2 or 3 arguments, got </span><span class="si">%d</span><span class="s2">"</span> <span class="o">%</span> <span class="n">argc</span><span class="p">)</span>
+        <span class="sd">"""weighted for objective"""</span>
+        <span class="n">weight</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">get_weight</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">weight</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="sd">"""only one class"""</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">weight</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">grad</span><span class="p">):</span>
+                <span class="n">grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">grad</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
+                <span class="n">hess</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">hess</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">num_data</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">weight</span><span class="p">)</span>
+                <span class="n">num_class</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">grad</span><span class="p">)</span> <span class="o">//</span> <span class="n">num_data</span>
+                <span class="k">if</span> <span class="n">num_class</span> <span class="o">*</span> <span class="n">num_data</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">grad</span><span class="p">):</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Length of grad and hess should equal to num_class * num_data"</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">range_</span><span class="p">(</span><span class="n">num_class</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">range_</span><span class="p">(</span><span class="n">num_data</span><span class="p">):</span>
+                        <span class="n">idx</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">num_data</span> <span class="o">+</span> <span class="n">i</span>
+                        <span class="n">grad</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">*=</span> <span class="n">weight</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                        <span class="n">hess</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">*=</span> <span class="n">weight</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">grad</span><span class="p">,</span> <span class="n">hess</span>
+    <span class="k">return</span> <span class="n">inner</span>
+
+
+<span class="k">def</span> <span class="nf">_eval_function_wrapper</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="sd">"""Decorate an eval function.</span>
+
+<span class="sd">    Note</span>
+<span class="sd">    ----</span>
+<span class="sd">    For multi-class task, the y_pred is group by class_id first, then group by row_id.</span>
+<span class="sd">    If you want to get i-th row y_pred in j-th class, the access way is y_pred[j * num_data + i].</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    func : callable</span>
+<span class="sd">        Expects a callable with following signatures:</span>
+<span class="sd">        ``func(y_true, y_pred)``,</span>
+<span class="sd">        ``func(y_true, y_pred, weight)``</span>
+<span class="sd">        or ``func(y_true, y_pred, weight, group)``</span>
+<span class="sd">        and returns (eval_name-&gt;string, eval_result-&gt;float, is_bigger_better-&gt;bool):</span>
+
+<span class="sd">            y_true : array-like of shape = [n_samples]</span>
+<span class="sd">                The target values.</span>
+<span class="sd">            y_pred : array-like of shape = [n_samples] or shape = [n_samples * n_classes] (for multi-class task)</span>
+<span class="sd">                The predicted values.</span>
+<span class="sd">            weight : array-like of shape = [n_samples]</span>
+<span class="sd">                The weight of samples.</span>
+<span class="sd">            group : array-like</span>
+<span class="sd">                Group/query data, used for ranking task.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    new_func : callable</span>
+<span class="sd">        The new eval function as expected by ``lightgbm.engine.train``.</span>
+<span class="sd">        The signature is ``new_func(preds, dataset)``:</span>
+
+<span class="sd">            preds : array-like of shape = [n_samples] or shape = [n_samples * n_classes] (for multi-class task)</span>
+<span class="sd">                The predicted values.</span>
+<span class="sd">            dataset : Dataset</span>
+<span class="sd">                The training set from which the labels will be extracted using ``dataset.get_label()``.</span>
+<span class="sd">    """</span>
+    <span class="k">def</span> <span class="nf">inner</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">dataset</span><span class="p">):</span>
+        <span class="sd">"""Call passed function with appropriate arguments."""</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">get_label</span><span class="p">()</span>
+        <span class="n">argc</span> <span class="o">=</span> <span class="n">argc_</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">argc</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">argc</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">preds</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">get_weight</span><span class="p">())</span>
+        <span class="k">elif</span> <span class="n">argc</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">preds</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">get_weight</span><span class="p">(),</span> <span class="n">dataset</span><span class="o">.</span><span class="n">get_group</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"Self-defined eval function should have 2, 3 or 4 arguments, got </span><span class="si">%d</span><span class="s2">"</span> <span class="o">%</span> <span class="n">argc</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">inner</span>
+
+
+<div class="viewcode-block" id="LGBMModel"><a class="viewcode-back" href="https://lightgbm.readthedocs.io/en/latest/Python-API.html#lightgbm.LGBMModel">[docs]</a><span class="k">class</span> <span class="nc">LGBMModel</span><span class="p">(</span><span class="n">_LGBMModelBase</span><span class="p">):</span>
+    <span class="sd">"""Implementation of the scikit-learn API for LightGBM."""</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">boosting_type</span><span class="o">=</span><span class="s1">'gbdt'</span><span class="p">,</span> <span class="n">num_leaves</span><span class="o">=</span><span class="mi">31</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                 <span class="n">subsample_for_bin</span><span class="o">=</span><span class="mi">200000</span><span class="p">,</span> <span class="n">objective</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">class_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">min_split_gain</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">min_child_weight</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">min_child_samples</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+                 <span class="n">subsample</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">subsample_freq</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">colsample_bytree</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
+                 <span class="n">reg_alpha</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">reg_lambda</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">importance_type</span><span class="o">=</span><span class="s1">'split'</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">"""Construct a gradient boosting model.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        boosting_type : string, optional (default='gbdt')</span>
+<span class="sd">            'gbdt', traditional Gradient Boosting Decision Tree.</span>
+<span class="sd">            'dart', Dropouts meet Multiple Additive Regression Trees.</span>
+<span class="sd">            'goss', Gradient-based One-Side Sampling.</span>
+<span class="sd">            'rf', Random Forest.</span>
+<span class="sd">        num_leaves : int, optional (default=31)</span>
+<span class="sd">            Maximum tree leaves for base learners.</span>
+<span class="sd">        max_depth : int, optional (default=-1)</span>
+<span class="sd">            Maximum tree depth for base learners, -1 means no limit.</span>
+<span class="sd">        learning_rate : float, optional (default=0.1)</span>
+<span class="sd">            Boosting learning rate.</span>
+<span class="sd">            You can use ``callbacks`` parameter of ``fit`` method to shrink/adapt learning rate</span>
+<span class="sd">            in training using ``reset_parameter`` callback.</span>
+<span class="sd">            Note, that this will ignore the ``learning_rate`` argument in training.</span>
+<span class="sd">        n_estimators : int, optional (default=100)</span>
+<span class="sd">            Number of boosted trees to fit.</span>
+<span class="sd">        subsample_for_bin : int, optional (default=200000)</span>
+<span class="sd">            Number of samples for constructing bins.</span>
+<span class="sd">        objective : string, callable or None, optional (default=None)</span>
+<span class="sd">            Specify the learning task and the corresponding learning objective or</span>
+<span class="sd">            a custom objective function to be used (see note below).</span>
+<span class="sd">            Default: 'regression' for LGBMRegressor, 'binary' or 'multiclass' for LGBMClassifier, 'lambdarank' for LGBMRanker.</span>
+<span class="sd">        class_weight : dict, 'balanced' or None, optional (default=None)</span>
+<span class="sd">            Weights associated with classes in the form ``{class_label: weight}``.</span>
+<span class="sd">            Use this parameter only for multi-class classification task;</span>
+<span class="sd">            for binary classification task you may use ``is_unbalance`` or ``scale_pos_weight`` parameters.</span>
+<span class="sd">            The 'balanced' mode uses the values of y to automatically adjust weights</span>
+<span class="sd">            inversely proportional to class frequencies in the input data as ``n_samples / (n_classes * np.bincount(y))``.</span>
+<span class="sd">            If None, all classes are supposed to have weight one.</span>
+<span class="sd">            Note, that these weights will be multiplied with ``sample_weight`` (passed through the ``fit`` method)</span>
+<span class="sd">            if ``sample_weight`` is specified.</span>
+<span class="sd">        min_split_gain : float, optional (default=0.)</span>
+<span class="sd">            Minimum loss reduction required to make a further partition on a leaf node of the tree.</span>
+<span class="sd">        min_child_weight : float, optional (default=1e-3)</span>
+<span class="sd">            Minimum sum of instance weight (hessian) needed in a child (leaf).</span>
+<span class="sd">        min_child_samples : int, optional (default=20)</span>
+<span class="sd">            Minimum number of data needed in a child (leaf).</span>
+<span class="sd">        subsample : float, optional (default=1.)</span>
+<span class="sd">            Subsample ratio of the training instance.</span>
+<span class="sd">        subsample_freq : int, optional (default=0)</span>
+<span class="sd">            Frequence of subsample, &lt;=0 means no enable.</span>
+<span class="sd">        colsample_bytree : float, optional (default=1.)</span>
+<span class="sd">            Subsample ratio of columns when constructing each tree.</span>
+<span class="sd">        reg_alpha : float, optional (default=0.)</span>
+<span class="sd">            L1 regularization term on weights.</span>
+<span class="sd">        reg_lambda : float, optional (default=0.)</span>
+<span class="sd">            L2 regularization term on weights.</span>
+<span class="sd">        random_state : int or None, optional (default=None)</span>
+<span class="sd">            Random number seed.</span>
+<span class="sd">            If None, default seeds in C++ code will be used.</span>
+<span class="sd">        n_jobs : int, optional (default=-1)</span>
+<span class="sd">            Number of parallel threads.</span>
+<span class="sd">        silent : bool, optional (default=True)</span>
+<span class="sd">            Whether to print messages while running boosting.</span>
+<span class="sd">        importance_type : string, optional (default='split')</span>
+<span class="sd">            The type of feature importance to be filled into ``feature_importances_``.</span>
+<span class="sd">            If 'split', result contains numbers of times the feature is used in a model.</span>
+<span class="sd">            If 'gain', result contains total gains of splits which use the feature.</span>
+<span class="sd">        **kwargs</span>
+<span class="sd">            Other parameters for the model.</span>
+<span class="sd">            Check http://lightgbm.readthedocs.io/en/latest/Parameters.html for more parameters.</span>
+
+<span class="sd">            Note</span>
+<span class="sd">            ----</span>
+<span class="sd">            \*\*kwargs is not supported in sklearn, it may cause unexpected issues.</span>
+
+<span class="sd">        Attributes</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n_features_ : int</span>
+<span class="sd">            The number of features of fitted model.</span>
+<span class="sd">        classes_ : array of shape = [n_classes]</span>
+<span class="sd">            The class label array (only for classification problem).</span>
+<span class="sd">        n_classes_ : int</span>
+<span class="sd">            The number of classes (only for classification problem).</span>
+<span class="sd">        best_score_ : dict or None</span>
+<span class="sd">            The best score of fitted model.</span>
+<span class="sd">        best_iteration_ : int or None</span>
+<span class="sd">            The best iteration of fitted model if ``early_stopping_rounds`` has been specified.</span>
+<span class="sd">        objective_ : string or callable</span>
+<span class="sd">            The concrete objective used while fitting this model.</span>
+<span class="sd">        booster_ : Booster</span>
+<span class="sd">            The underlying Booster of this model.</span>
+<span class="sd">        evals_result_ : dict or None</span>
+<span class="sd">            The evaluation results if ``early_stopping_rounds`` has been specified.</span>
+<span class="sd">        feature_importances_ : array of shape = [n_features]</span>
+<span class="sd">            The feature importances (the higher, the more important the feature).</span>
+
+<span class="sd">        Note</span>
+<span class="sd">        ----</span>
+<span class="sd">        A custom objective function can be provided for the ``objective`` parameter.</span>
+<span class="sd">        In this case, it should have the signature</span>
+<span class="sd">        ``objective(y_true, y_pred) -&gt; grad, hess`` or</span>
+<span class="sd">        ``objective(y_true, y_pred, group) -&gt; grad, hess``:</span>
+
+<span class="sd">            y_true : array-like of shape = [n_samples]</span>
+<span class="sd">                The target values.</span>
+<span class="sd">            y_pred : array-like of shape = [n_samples] or shape = [n_samples * n_classes] (for multi-class task)</span>
+<span class="sd">                The predicted values.</span>
+<span class="sd">            group : array-like</span>
+<span class="sd">                Group/query data, used for ranking task.</span>
+<span class="sd">            grad : array-like of shape = [n_samples] or shape = [n_samples * n_classes] (for multi-class task)</span>
+<span class="sd">                The value of the gradient for each sample point.</span>
+<span class="sd">            hess : array-like of shape = [n_samples] or shape = [n_samples * n_classes] (for multi-class task)</span>
+<span class="sd">                The value of the second derivative for each sample point.</span>
+
+<span class="sd">        For multi-class task, the y_pred is group by class_id first, then group by row_id.</span>
+<span class="sd">        If you want to get i-th row y_pred in j-th class, the access way is y_pred[j * num_data + i]</span>
+<span class="sd">        and you should group grad and hess in this way as well.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">SKLEARN_INSTALLED</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">LightGBMError</span><span class="p">(</span><span class="s1">'Scikit-learn is required for this module'</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">boosting_type</span> <span class="o">=</span> <span class="n">boosting_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">objective</span> <span class="o">=</span> <span class="n">objective</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_leaves</span> <span class="o">=</span> <span class="n">num_leaves</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_depth</span> <span class="o">=</span> <span class="n">max_depth</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">=</span> <span class="n">learning_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span> <span class="o">=</span> <span class="n">n_estimators</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subsample_for_bin</span> <span class="o">=</span> <span class="n">subsample_for_bin</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_split_gain</span> <span class="o">=</span> <span class="n">min_split_gain</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_child_weight</span> <span class="o">=</span> <span class="n">min_child_weight</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_child_samples</span> <span class="o">=</span> <span class="n">min_child_samples</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subsample</span> <span class="o">=</span> <span class="n">subsample</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subsample_freq</span> <span class="o">=</span> <span class="n">subsample_freq</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">colsample_bytree</span> <span class="o">=</span> <span class="n">colsample_bytree</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reg_alpha</span> <span class="o">=</span> <span class="n">reg_alpha</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reg_lambda</span> <span class="o">=</span> <span class="n">reg_lambda</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">random_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="n">n_jobs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">silent</span> <span class="o">=</span> <span class="n">silent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">importance_type</span> <span class="o">=</span> <span class="n">importance_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_Booster</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_evals_result</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_best_score</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_best_iteration</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_other_params</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_objective</span> <span class="o">=</span> <span class="n">objective</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_weight</span> <span class="o">=</span> <span class="n">class_weight</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n_features</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_classes</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n_classes</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="LGBMModel.get_params"><a class="viewcode-back" href="https://lightgbm.readthedocs.io/en/latest/Python-API.html#lightgbm.LGBMModel.get_params">[docs]</a>    <span class="k">def</span> <span class="nf">get_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">"""Get parameters for this estimator.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        deep : bool, optional (default=True)</span>
+<span class="sd">            If True, will return the parameters for this estimator and</span>
+<span class="sd">            contained subobjects that are estimators.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        params : dict</span>
+<span class="sd">            Parameter names mapped to their values.</span>
+<span class="sd">        """</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">LGBMModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_params</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="n">deep</span><span class="p">)</span>
+        <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_other_params</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">params</span></div>
+
+    <span class="c1"># minor change to support `**kwargs`</span>
+<div class="viewcode-block" id="LGBMModel.set_params"><a class="viewcode-back" href="https://lightgbm.readthedocs.io/en/latest/Python-API.html#lightgbm.LGBMModel.set_params">[docs]</a>    <span class="k">def</span> <span class="nf">set_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="sd">"""Set the parameters of this estimator.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        **params</span>
+<span class="sd">            Parameter names with their new values.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self : object</span>
+<span class="sd">            Returns self.</span>
+<span class="sd">        """</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">'_'</span> <span class="o">+</span> <span class="n">key</span><span class="p">):</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">'_'</span> <span class="o">+</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_other_params</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="LGBMModel.fit"><a class="viewcode-back" href="https://lightgbm.readthedocs.io/en/latest/Python-API.html#lightgbm.LGBMModel.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
+            <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">init_score</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">eval_set</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eval_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eval_sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">eval_class_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eval_init_score</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eval_group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">eval_metric</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">feature_name</span><span class="o">=</span><span class="s1">'auto'</span><span class="p">,</span> <span class="n">categorical_feature</span><span class="o">=</span><span class="s1">'auto'</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">"""Build a gradient boosting model from the training set (X, y).</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : array-like or sparse matrix of shape = [n_samples, n_features]</span>
+<span class="sd">            Input feature matrix.</span>
+<span class="sd">        y : array-like of shape = [n_samples]</span>
+<span class="sd">            The target values (class labels in classification, real numbers in regression).</span>
+<span class="sd">        sample_weight : array-like of shape = [n_samples] or None, optional (default=None)</span>
+<span class="sd">            Weights of training data.</span>
+<span class="sd">        init_score : array-like of shape = [n_samples] or None, optional (default=None)</span>
+<span class="sd">            Init score of training data.</span>
+<span class="sd">        group : array-like or None, optional (default=None)</span>
+<span class="sd">            Group data of training data.</span>
+<span class="sd">        eval_set : list or None, optional (default=None)</span>
+<span class="sd">            A list of (X, y) tuple pairs to use as validation sets.</span>
+<span class="sd">        eval_names : list of strings or None, optional (default=None)</span>
+<span class="sd">            Names of eval_set.</span>
+<span class="sd">        eval_sample_weight : list of arrays or None, optional (default=None)</span>
+<span class="sd">            Weights of eval data.</span>
+<span class="sd">        eval_class_weight : list or None, optional (default=None)</span>
+<span class="sd">            Class weights of eval data.</span>
+<span class="sd">        eval_init_score : list of arrays or None, optional (default=None)</span>
+<span class="sd">            Init score of eval data.</span>
+<span class="sd">        eval_group : list of arrays or None, optional (default=None)</span>
+<span class="sd">            Group data of eval data.</span>
+<span class="sd">        eval_metric : string, list of strings, callable or None, optional (default=None)</span>
+<span class="sd">            If string, it should be a built-in evaluation metric to use.</span>
+<span class="sd">            If callable, it should be a custom evaluation metric, see note below for more details.</span>
+<span class="sd">            In either case, the ``metric`` from the model parameters will be evaluated and used as well.</span>
+<span class="sd">            Default: 'l2' for LGBMRegressor, 'logloss' for LGBMClassifier, 'ndcg' for LGBMRanker.</span>
+<span class="sd">        early_stopping_rounds : int or None, optional (default=None)</span>
+<span class="sd">            Activates early stopping. The model will train until the validation score stops improving.</span>
+<span class="sd">            Validation score needs to improve at least every ``early_stopping_rounds`` round(s)</span>
+<span class="sd">            to continue training.</span>
+<span class="sd">            Requires at least one validation data and one metric.</span>
+<span class="sd">            If there's more than one, will check all of them. But the training data is ignored anyway.</span>
+<span class="sd">        verbose : bool or int, optional (default=True)</span>
+<span class="sd">            Requires at least one evaluation data.</span>
+<span class="sd">            If True, the eval metric on the eval set is printed at each boosting stage.</span>
+<span class="sd">            If int, the eval metric on the eval set is printed at every ``verbose`` boosting stage.</span>
+<span class="sd">            The last boosting stage or the boosting stage found by using ``early_stopping_rounds`` is also printed.</span>
+
+<span class="sd">            Example</span>
+<span class="sd">            -------</span>
+<span class="sd">            With ``verbose`` = 4 and at least one item in ``eval_set``,</span>
+<span class="sd">            an evaluation metric is printed every 4 (instead of 1) boosting stages.</span>
+
+<span class="sd">        feature_name : list of strings or 'auto', optional (default='auto')</span>
+<span class="sd">            Feature names.</span>
+<span class="sd">            If 'auto' and data is pandas DataFrame, data columns names are used.</span>
+<span class="sd">        categorical_feature : list of strings or int, or 'auto', optional (default='auto')</span>
+<span class="sd">            Categorical features.</span>
+<span class="sd">            If list of int, interpreted as indices.</span>
+<span class="sd">            If list of strings, interpreted as feature names (need to specify ``feature_name`` as well).</span>
+<span class="sd">            If 'auto' and data is pandas DataFrame, pandas categorical columns are used.</span>
+<span class="sd">            All values in categorical features should be less than int32 max value (2147483647).</span>
+<span class="sd">            Large values could be memory consuming. Consider using consecutive integers starting from zero.</span>
+<span class="sd">            All negative values in categorical features will be treated as missing values.</span>
+<span class="sd">        callbacks : list of callback functions or None, optional (default=None)</span>
+<span class="sd">            List of callback functions that are applied at each iteration.</span>
+<span class="sd">            See Callbacks in Python API for more information.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self : object</span>
+<span class="sd">            Returns self.</span>
+
+<span class="sd">        Note</span>
+<span class="sd">        ----</span>
+<span class="sd">        Custom eval function expects a callable with following signatures:</span>
+<span class="sd">        ``func(y_true, y_pred)``, ``func(y_true, y_pred, weight)`` or</span>
+<span class="sd">        ``func(y_true, y_pred, weight, group)``</span>
+<span class="sd">        and returns (eval_name, eval_result, is_bigger_better) or</span>
+<span class="sd">        list of (eval_name, eval_result, is_bigger_better):</span>
+
+<span class="sd">            y_true : array-like of shape = [n_samples]</span>
+<span class="sd">                The target values.</span>
+<span class="sd">            y_pred : array-like of shape = [n_samples] or shape = [n_samples * n_classes] (for multi-class task)</span>
+<span class="sd">                The predicted values.</span>
+<span class="sd">            weight : array-like of shape = [n_samples]</span>
+<span class="sd">                The weight of samples.</span>
+<span class="sd">            group : array-like</span>
+<span class="sd">                Group/query data, used for ranking task.</span>
+<span class="sd">            eval_name : string</span>
+<span class="sd">                The name of evaluation.</span>
+<span class="sd">            eval_result : float</span>
+<span class="sd">                The eval result.</span>
+<span class="sd">            is_bigger_better : bool</span>
+<span class="sd">                Is eval result bigger better, e.g. AUC is bigger_better.</span>
+
+<span class="sd">        For multi-class task, the y_pred is group by class_id first, then group by row_id.</span>
+<span class="sd">        If you want to get i-th row y_pred in j-th class, the access way is y_pred[j * num_data + i].</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_objective</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">LGBMRegressor</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_objective</span> <span class="o">=</span> <span class="s2">"regression"</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">LGBMClassifier</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_objective</span> <span class="o">=</span> <span class="s2">"binary"</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">LGBMRanker</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_objective</span> <span class="o">=</span> <span class="s2">"lambdarank"</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Unknown LGBMModel type."</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_objective</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_fobj</span> <span class="o">=</span> <span class="n">_objective_function_wrapper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_objective</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_fobj</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">evals_result</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span>
+        <span class="c1"># user can set verbose with kwargs, it has higher priority</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">verbose_alias</span> <span class="ow">in</span> <span class="n">params</span> <span class="k">for</span> <span class="n">verbose_alias</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">'verbose'</span><span class="p">,</span> <span class="s1">'verbosity'</span><span class="p">))</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">silent</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s1">'verbose'</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">'silent'</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">'importance_type'</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">'n_estimators'</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">'class_weight'</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_classes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_classes</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s1">'num_class'</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_classes</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">'_eval_at'</span><span class="p">):</span>
+            <span class="n">params</span><span class="p">[</span><span class="s1">'eval_at'</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_eval_at</span>
+        <span class="n">params</span><span class="p">[</span><span class="s1">'objective'</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_objective</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fobj</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s1">'objective'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'None'</span>  <span class="c1"># objective = nullptr for unknown objective</span>
+
+        <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">eval_metric</span><span class="p">):</span>
+            <span class="n">feval</span> <span class="o">=</span> <span class="n">_eval_function_wrapper</span><span class="p">(</span><span class="n">eval_metric</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">feval</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="c1"># register default metric for consistency with callable eval_metric case</span>
+            <span class="n">original_metric</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_objective</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_objective</span><span class="p">,</span> <span class="n">string_type</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="n">original_metric</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># try to deduce from class instance</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">LGBMRegressor</span><span class="p">):</span>
+                    <span class="n">original_metric</span> <span class="o">=</span> <span class="s2">"l2"</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">LGBMClassifier</span><span class="p">):</span>
+                    <span class="n">original_metric</span> <span class="o">=</span> <span class="s2">"multi_logloss"</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_classes</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="k">else</span> <span class="s2">"binary_logloss"</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">LGBMRanker</span><span class="p">):</span>
+                    <span class="n">original_metric</span> <span class="o">=</span> <span class="s2">"ndcg"</span>
+            <span class="c1"># overwrite default metric by explicitly set metric</span>
+            <span class="k">for</span> <span class="n">metric_alias</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'metric'</span><span class="p">,</span> <span class="s1">'metrics'</span><span class="p">,</span> <span class="s1">'metric_types'</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">metric_alias</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+                    <span class="n">original_metric</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">metric_alias</span><span class="p">)</span>
+            <span class="c1"># concatenate metric from params (or default if not provided in params) and eval_metric</span>
+            <span class="n">original_metric</span> <span class="o">=</span> <span class="p">[</span><span class="n">original_metric</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">original_metric</span><span class="p">,</span> <span class="p">(</span><span class="n">string_type</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">)))</span> <span class="k">else</span> <span class="n">original_metric</span>
+            <span class="n">eval_metric</span> <span class="o">=</span> <span class="p">[</span><span class="n">eval_metric</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">eval_metric</span><span class="p">,</span> <span class="p">(</span><span class="n">string_type</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">)))</span> <span class="k">else</span> <span class="n">eval_metric</span>
+            <span class="n">params</span><span class="p">[</span><span class="s1">'metric'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">original_metric</span> <span class="o">+</span> <span class="n">eval_metric</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">DataFrame</span><span class="p">):</span>
+            <span class="n">_X</span><span class="p">,</span> <span class="n">_y</span> <span class="o">=</span> <span class="n">_LGBMCheckXY</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">accept_sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">force_all_finite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ensure_min_samples</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">_LGBMCheckConsistentLength</span><span class="p">(</span><span class="n">_X</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">_X</span><span class="p">,</span> <span class="n">_y</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_weight</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">class_sample_weight</span> <span class="o">=</span> <span class="n">_LGBMComputeSampleWeight</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">class_weight</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">sample_weight</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">sample_weight</span> <span class="o">=</span> <span class="n">class_sample_weight</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">sample_weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">class_sample_weight</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n_features</span> <span class="o">=</span> <span class="n">_X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">def</span> <span class="nf">_construct_dataset</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">,</span> <span class="n">init_score</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">ret</span><span class="o">.</span><span class="n">set_init_score</span><span class="p">(</span><span class="n">init_score</span><span class="p">)</span>
+
+        <span class="n">train_set</span> <span class="o">=</span> <span class="n">_construct_dataset</span><span class="p">(</span><span class="n">_X</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">,</span> <span class="n">init_score</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+
+        <span class="n">valid_sets</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">eval_set</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="k">def</span> <span class="nf">_get_meta_data</span><span class="p">(</span><span class="n">collection</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">collection</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kc">None</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">collection</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="n">collection</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">collection</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">i</span> <span class="k">else</span> <span class="kc">None</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">collection</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="n">collection</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">'eval_sample_weight, eval_class_weight, eval_init_score, and eval_group '</span>
+                                    <span class="s1">'should be dict or list'</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">eval_set</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+                <span class="n">eval_set</span> <span class="o">=</span> <span class="p">[</span><span class="n">eval_set</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">valid_data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">eval_set</span><span class="p">):</span>
+                <span class="c1"># reduce cost for prediction training data</span>
+                <span class="k">if</span> <span class="n">valid_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="n">X</span> <span class="ow">and</span> <span class="n">valid_data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="n">y</span><span class="p">:</span>
+                    <span class="n">valid_set</span> <span class="o">=</span> <span class="n">train_set</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">valid_weight</span> <span class="o">=</span> <span class="n">_get_meta_data</span><span class="p">(</span><span class="n">eval_sample_weight</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">_get_meta_data</span><span class="p">(</span><span class="n">eval_class_weight</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">valid_class_sample_weight</span> <span class="o">=</span> <span class="n">_LGBMComputeSampleWeight</span><span class="p">(</span><span class="n">_get_meta_data</span><span class="p">(</span><span class="n">eval_class_weight</span><span class="p">,</span> <span class="n">i</span><span class="p">),</span>
+                                                                             <span class="n">valid_data</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                        <span class="k">if</span> <span class="n">valid_weight</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">valid_weight</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                            <span class="n">valid_weight</span> <span class="o">=</span> <span class="n">valid_class_sample_weight</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">valid_weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">valid_weight</span><span class="p">,</span> <span class="n">valid_class_sample_weight</span><span class="p">)</span>
+                    <span class="n">valid_init_score</span> <span class="o">=</span> <span class="n">_get_meta_data</span><span class="p">(</span><span class="n">eval_init_score</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+                    <span class="n">valid_group</span> <span class="o">=</span> <span class="n">_get_meta_data</span><span class="p">(</span><span class="n">eval_group</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+                    <span class="n">valid_set</span> <span class="o">=</span> <span class="n">_construct_dataset</span><span class="p">(</span><span class="n">valid_data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">valid_data</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                                                   <span class="n">valid_weight</span><span class="p">,</span> <span class="n">valid_init_score</span><span class="p">,</span> <span class="n">valid_group</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+                <span class="n">valid_sets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">valid_set</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_Booster</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">train_set</span><span class="p">,</span>
+                              <span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span><span class="p">,</span> <span class="n">valid_sets</span><span class="o">=</span><span class="n">valid_sets</span><span class="p">,</span> <span class="n">valid_names</span><span class="o">=</span><span class="n">eval_names</span><span class="p">,</span>
+                              <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="n">early_stopping_rounds</span><span class="p">,</span>
+                              <span class="n">evals_result</span><span class="o">=</span><span class="n">evals_result</span><span class="p">,</span> <span class="n">fobj</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_fobj</span><span class="p">,</span> <span class="n">feval</span><span class="o">=</span><span class="n">feval</span><span class="p">,</span>
+                              <span class="n">verbose_eval</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span> <span class="n">feature_name</span><span class="o">=</span><span class="n">feature_name</span><span class="p">,</span>
+                              <span class="n">categorical_feature</span><span class="o">=</span><span class="n">categorical_feature</span><span class="p">,</span>
+                              <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">evals_result</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_evals_result</span> <span class="o">=</span> <span class="n">evals_result</span>
+
+        <span class="k">if</span> <span class="n">early_stopping_rounds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_best_iteration</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Booster</span><span class="o">.</span><span class="n">best_iteration</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_best_score</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Booster</span><span class="o">.</span><span class="n">best_score</span>
+
+        <span class="c1"># free dataset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">booster_</span><span class="o">.</span><span class="n">free_dataset</span><span class="p">()</span>
+        <span class="k">del</span> <span class="n">train_set</span><span class="p">,</span> <span class="n">valid_sets</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="LGBMModel.predict"><a class="viewcode-back" href="https://lightgbm.readthedocs.io/en/latest/Python-API.html#lightgbm.LGBMModel.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">raw_score</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">num_iteration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">pred_leaf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">pred_contrib</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">"""Return the predicted value for each sample.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : array-like or sparse matrix of shape = [n_samples, n_features]</span>
+<span class="sd">            Input features matrix.</span>
+<span class="sd">        raw_score : bool, optional (default=False)</span>
+<span class="sd">            Whether to predict raw scores.</span>
+<span class="sd">        num_iteration : int or None, optional (default=None)</span>
+<span class="sd">            Limit number of iterations in the prediction.</span>
+<span class="sd">            If None, if the best iteration exists, it is used; otherwise, all trees are used.</span>
+<span class="sd">            If &lt;= 0, all trees are used (no limits).</span>
+<span class="sd">        pred_leaf : bool, optional (default=False)</span>
+<span class="sd">            Whether to predict leaf index.</span>
+<span class="sd">        pred_contrib : bool, optional (default=False)</span>
+<span class="sd">            Whether to predict feature contributions.</span>
+
+<span class="sd">            Note</span>
+<span class="sd">            ----</span>
+<span class="sd">            If you want to get more explanation for your model's predictions using SHAP values</span>
+<span class="sd">            like SHAP interaction values,</span>
+<span class="sd">            you can install shap package (https://github.com/slundberg/shap).</span>
+
+<span class="sd">        **kwargs</span>
+<span class="sd">            Other parameters for the prediction.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        predicted_result : array-like of shape = [n_samples] or shape = [n_samples, n_classes]</span>
+<span class="sd">            The predicted values.</span>
+<span class="sd">        X_leaves : array-like of shape = [n_samples, n_trees] or shape [n_samples, n_trees * n_classes]</span>
+<span class="sd">            If ``pred_leaf=True``, the predicted leaf every tree for each sample.</span>
+<span class="sd">        X_SHAP_values : array-like of shape = [n_samples, n_features + 1] or shape [n_samples, (n_features + 1) * n_classes]</span>
+<span class="sd">            If ``pred_contrib=True``, the each feature contributions for each sample.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_features</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">LGBMNotFittedError</span><span class="p">(</span><span class="s2">"Estimator not fitted, call `fit` before exploiting the model."</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">DataFrame</span><span class="p">):</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">_LGBMCheckArray</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">accept_sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">force_all_finite</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">n_features</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_features</span> <span class="o">!=</span> <span class="n">n_features</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Number of features of the model must "</span>
+                             <span class="s2">"match the input. Model n_features_ is </span><span class="si">%s</span><span class="s2"> and "</span>
+                             <span class="s2">"input n_features is </span><span class="si">%s</span><span class="s2"> "</span>
+                             <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_features</span><span class="p">,</span> <span class="n">n_features</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">booster_</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">raw_score</span><span class="o">=</span><span class="n">raw_score</span><span class="p">,</span> <span class="n">num_iteration</span><span class="o">=</span><span class="n">num_iteration</span><span class="p">,</span>
+                                     <span class="n">pred_leaf</span><span class="o">=</span><span class="n">pred_leaf</span><span class="p">,</span> <span class="n">pred_contrib</span><span class="o">=</span><span class="n">pred_contrib</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">n_features_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""Get the number of features of fitted model."""</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_features</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">LGBMNotFittedError</span><span class="p">(</span><span class="s1">'No n_features found. Need to call fit beforehand.'</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_features</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">best_score_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""Get the best score of fitted model."""</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_features</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">LGBMNotFittedError</span><span class="p">(</span><span class="s1">'No best_score found. Need to call fit beforehand.'</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_best_score</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">best_iteration_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""Get the best iteration of fitted model."""</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_features</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">LGBMNotFittedError</span><span class="p">(</span><span class="s1">'No best_iteration found. Need to call fit with early_stopping_rounds beforehand.'</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_best_iteration</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">objective_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""Get the concrete objective used while fitting this model."""</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_features</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">LGBMNotFittedError</span><span class="p">(</span><span class="s1">'No objective found. Need to call fit beforehand.'</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_objective</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">booster_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""Get the underlying lightgbm Booster of this model."""</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Booster</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">LGBMNotFittedError</span><span class="p">(</span><span class="s1">'No booster found. Need to call fit beforehand.'</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Booster</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">evals_result_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""Get the evaluation results."""</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_features</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">LGBMNotFittedError</span><span class="p">(</span><span class="s1">'No results found. Need to call fit with eval_set beforehand.'</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_evals_result</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">feature_importances_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""Get feature importances.</span>
+
+<span class="sd">        Note</span>
+<span class="sd">        ----</span>
+<span class="sd">        Feature importance in sklearn interface used to normalize to 1,</span>
+<span class="sd">        it's deprecated after 2.0.4 and is the same as Booster.feature_importance() now.</span>
+<span class="sd">        ``importance_type`` attribute is passed to the function</span>
+<span class="sd">        to configure the type of importance values to be extracted.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_features</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">LGBMNotFittedError</span><span class="p">(</span><span class="s1">'No feature_importances found. Need to call fit beforehand.'</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">booster_</span><span class="o">.</span><span class="n">feature_importance</span><span class="p">(</span><span class="n">importance_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">importance_type</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="LGBMRegressor"><a class="viewcode-back" href="https://lightgbm.readthedocs.io/en/latest/Python-API.html#lightgbm.LGBMRegressor">[docs]</a><span class="k">class</span> <span class="nc">LGBMRegressor</span><span class="p">(</span><span class="n">LGBMModel</span><span class="p">,</span> <span class="n">_LGBMRegressorBase</span><span class="p">):</span>
+    <span class="sd">"""LightGBM regressor."""</span>
+
+<div class="viewcode-block" id="LGBMRegressor.fit"><a class="viewcode-back" href="https://lightgbm.readthedocs.io/en/latest/Python-API.html#lightgbm.LGBMRegressor.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
+            <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">init_score</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">eval_set</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eval_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eval_sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">eval_init_score</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eval_metric</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">feature_name</span><span class="o">=</span><span class="s1">'auto'</span><span class="p">,</span> <span class="n">categorical_feature</span><span class="o">=</span><span class="s1">'auto'</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">"""Docstring is inherited from the LGBMModel."""</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">LGBMRegressor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span>
+                                       <span class="n">init_score</span><span class="o">=</span><span class="n">init_score</span><span class="p">,</span> <span class="n">eval_set</span><span class="o">=</span><span class="n">eval_set</span><span class="p">,</span>
+                                       <span class="n">eval_names</span><span class="o">=</span><span class="n">eval_names</span><span class="p">,</span>
+                                       <span class="n">eval_sample_weight</span><span class="o">=</span><span class="n">eval_sample_weight</span><span class="p">,</span>
+                                       <span class="n">eval_init_score</span><span class="o">=</span><span class="n">eval_init_score</span><span class="p">,</span>
+                                       <span class="n">eval_metric</span><span class="o">=</span><span class="n">eval_metric</span><span class="p">,</span>
+                                       <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="n">early_stopping_rounds</span><span class="p">,</span>
+                                       <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span> <span class="n">feature_name</span><span class="o">=</span><span class="n">feature_name</span><span class="p">,</span>
+                                       <span class="n">categorical_feature</span><span class="o">=</span><span class="n">categorical_feature</span><span class="p">,</span>
+                                       <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+    <span class="n">_base_doc</span> <span class="o">=</span> <span class="n">LGBMModel</span><span class="o">.</span><span class="n">fit</span><span class="o">.</span><span class="vm">__doc__</span>
+    <span class="n">fit</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="p">(</span><span class="n">_base_doc</span><span class="p">[:</span><span class="n">_base_doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">'eval_class_weight :'</span><span class="p">)]</span>
+                   <span class="o">+</span> <span class="n">_base_doc</span><span class="p">[</span><span class="n">_base_doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">'eval_init_score :'</span><span class="p">):])</span></div>
+
+
+<div class="viewcode-block" id="LGBMClassifier"><a class="viewcode-back" href="https://lightgbm.readthedocs.io/en/latest/Python-API.html#lightgbm.LGBMClassifier">[docs]</a><span class="k">class</span> <span class="nc">LGBMClassifier</span><span class="p">(</span><span class="n">LGBMModel</span><span class="p">,</span> <span class="n">_LGBMClassifierBase</span><span class="p">):</span>
+    <span class="sd">"""LightGBM classifier."""</span>
+
+<div class="viewcode-block" id="LGBMClassifier.fit"><a class="viewcode-back" href="https://lightgbm.readthedocs.io/en/latest/Python-API.html#lightgbm.LGBMClassifier.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
+            <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">init_score</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">eval_set</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eval_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eval_sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">eval_class_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eval_init_score</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eval_metric</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">feature_name</span><span class="o">=</span><span class="s1">'auto'</span><span class="p">,</span> <span class="n">categorical_feature</span><span class="o">=</span><span class="s1">'auto'</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">"""Docstring is inherited from the LGBMModel."""</span>
+        <span class="n">_LGBMAssertAllFinite</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">_LGBMCheckClassificationTargets</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_le</span> <span class="o">=</span> <span class="n">_LGBMLabelEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_le</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_classes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_le</span><span class="o">.</span><span class="n">classes_</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n_classes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_classes</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_classes</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="c1"># Switch to using a multiclass objective in the underlying LGBM instance</span>
+            <span class="n">ova_aliases</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"multiclassova"</span><span class="p">,</span> <span class="s2">"multiclass_ova"</span><span class="p">,</span> <span class="s2">"ova"</span><span class="p">,</span> <span class="s2">"ovr"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_objective</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ova_aliases</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">callable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_objective</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_objective</span> <span class="o">=</span> <span class="s2">"multiclass"</span>
+            <span class="k">if</span> <span class="n">eval_metric</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">'logloss'</span><span class="p">,</span> <span class="s1">'binary_logloss'</span><span class="p">):</span>
+                <span class="n">eval_metric</span> <span class="o">=</span> <span class="s2">"multi_logloss"</span>
+            <span class="k">elif</span> <span class="n">eval_metric</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> <span class="s1">'binary_error'</span><span class="p">):</span>
+                <span class="n">eval_metric</span> <span class="o">=</span> <span class="s2">"multi_error"</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">eval_metric</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">'logloss'</span><span class="p">,</span> <span class="s1">'multi_logloss'</span><span class="p">):</span>
+                <span class="n">eval_metric</span> <span class="o">=</span> <span class="s1">'binary_logloss'</span>
+            <span class="k">elif</span> <span class="n">eval_metric</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> <span class="s1">'multi_error'</span><span class="p">):</span>
+                <span class="n">eval_metric</span> <span class="o">=</span> <span class="s1">'binary_error'</span>
+
+        <span class="k">if</span> <span class="n">eval_set</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">eval_set</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+                <span class="n">eval_set</span> <span class="o">=</span> <span class="p">[</span><span class="n">eval_set</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">valid_x</span><span class="p">,</span> <span class="n">valid_y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">eval_set</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">valid_x</span> <span class="ow">is</span> <span class="n">X</span> <span class="ow">and</span> <span class="n">valid_y</span> <span class="ow">is</span> <span class="n">y</span><span class="p">:</span>
+                    <span class="n">eval_set</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">valid_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">eval_set</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">valid_x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_le</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">valid_y</span><span class="p">))</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">LGBMClassifier</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span>
+                                        <span class="n">init_score</span><span class="o">=</span><span class="n">init_score</span><span class="p">,</span> <span class="n">eval_set</span><span class="o">=</span><span class="n">eval_set</span><span class="p">,</span>
+                                        <span class="n">eval_names</span><span class="o">=</span><span class="n">eval_names</span><span class="p">,</span>
+                                        <span class="n">eval_sample_weight</span><span class="o">=</span><span class="n">eval_sample_weight</span><span class="p">,</span>
+                                        <span class="n">eval_class_weight</span><span class="o">=</span><span class="n">eval_class_weight</span><span class="p">,</span>
+                                        <span class="n">eval_init_score</span><span class="o">=</span><span class="n">eval_init_score</span><span class="p">,</span>
+                                        <span class="n">eval_metric</span><span class="o">=</span><span class="n">eval_metric</span><span class="p">,</span>
+                                        <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="n">early_stopping_rounds</span><span class="p">,</span>
+                                        <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span> <span class="n">feature_name</span><span class="o">=</span><span class="n">feature_name</span><span class="p">,</span>
+                                        <span class="n">categorical_feature</span><span class="o">=</span><span class="n">categorical_feature</span><span class="p">,</span>
+                                        <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+    <span class="n">fit</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">LGBMModel</span><span class="o">.</span><span class="n">fit</span><span class="o">.</span><span class="vm">__doc__</span>
+
+<div class="viewcode-block" id="LGBMClassifier.predict"><a class="viewcode-back" href="https://lightgbm.readthedocs.io/en/latest/Python-API.html#lightgbm.LGBMClassifier.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">raw_score</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">num_iteration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">pred_leaf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">pred_contrib</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">"""Docstring is inherited from the LGBMModel."""</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">raw_score</span><span class="p">,</span> <span class="n">num_iteration</span><span class="p">,</span>
+                                    <span class="n">pred_leaf</span><span class="p">,</span> <span class="n">pred_contrib</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">raw_score</span> <span class="ow">or</span> <span class="n">pred_leaf</span> <span class="ow">or</span> <span class="n">pred_contrib</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">result</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">class_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_le</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">class_index</span><span class="p">)</span></div>
+
+    <span class="n">predict</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">LGBMModel</span><span class="o">.</span><span class="n">predict</span><span class="o">.</span><span class="vm">__doc__</span>
+
+<div class="viewcode-block" id="LGBMClassifier.predict_proba"><a class="viewcode-back" href="https://lightgbm.readthedocs.io/en/latest/Python-API.html#lightgbm.LGBMClassifier.predict_proba">[docs]</a>    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">raw_score</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">num_iteration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                      <span class="n">pred_leaf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">pred_contrib</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">"""Return the predicted probability for each class for each sample.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : array-like or sparse matrix of shape = [n_samples, n_features]</span>
+<span class="sd">            Input features matrix.</span>
+<span class="sd">        raw_score : bool, optional (default=False)</span>
+<span class="sd">            Whether to predict raw scores.</span>
+<span class="sd">        num_iteration : int or None, optional (default=None)</span>
+<span class="sd">            Limit number of iterations in the prediction.</span>
+<span class="sd">            If None, if the best iteration exists, it is used; otherwise, all trees are used.</span>
+<span class="sd">            If &lt;= 0, all trees are used (no limits).</span>
+<span class="sd">        pred_leaf : bool, optional (default=False)</span>
+<span class="sd">            Whether to predict leaf index.</span>
+<span class="sd">        pred_contrib : bool, optional (default=False)</span>
+<span class="sd">            Whether to predict feature contributions.</span>
+
+<span class="sd">            Note</span>
+<span class="sd">            ----</span>
+<span class="sd">            If you want to get more explanation for your model's predictions using SHAP values</span>
+<span class="sd">            like SHAP interaction values,</span>
+<span class="sd">            you can install shap package (https://github.com/slundberg/shap).</span>
+
+<span class="sd">        **kwargs</span>
+<span class="sd">            Other parameters for the prediction.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        predicted_probability : array-like of shape = [n_samples, n_classes]</span>
+<span class="sd">            The predicted probability for each class for each sample.</span>
+<span class="sd">        X_leaves : array-like of shape = [n_samples, n_trees * n_classes]</span>
+<span class="sd">            If ``pred_leaf=True``, the predicted leaf every tree for each sample.</span>
+<span class="sd">        X_SHAP_values : array-like of shape = [n_samples, (n_features + 1) * n_classes]</span>
+<span class="sd">            If ``pred_contrib=True``, the each feature contributions for each sample.</span>
+<span class="sd">        """</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">LGBMClassifier</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">raw_score</span><span class="p">,</span> <span class="n">num_iteration</span><span class="p">,</span>
+                                                     <span class="n">pred_leaf</span><span class="p">,</span> <span class="n">pred_contrib</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_classes</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">raw_score</span> <span class="ow">or</span> <span class="n">pred_leaf</span> <span class="ow">or</span> <span class="n">pred_contrib</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">result</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="mf">1.</span> <span class="o">-</span> <span class="n">result</span><span class="p">,</span> <span class="n">result</span><span class="p">))</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">classes_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""Get the class label array."""</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_classes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">LGBMNotFittedError</span><span class="p">(</span><span class="s1">'No classes found. Need to call fit beforehand.'</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_classes</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">n_classes_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""Get the number of classes."""</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_classes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">LGBMNotFittedError</span><span class="p">(</span><span class="s1">'No classes found. Need to call fit beforehand.'</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_classes</span></div>
+
+
+<div class="viewcode-block" id="LGBMRanker"><a class="viewcode-back" href="https://lightgbm.readthedocs.io/en/latest/Python-API.html#lightgbm.LGBMRanker">[docs]</a><span class="k">class</span> <span class="nc">LGBMRanker</span><span class="p">(</span><span class="n">LGBMModel</span><span class="p">):</span>
+    <span class="sd">"""LightGBM ranker."""</span>
+
+<div class="viewcode-block" id="LGBMRanker.fit"><a class="viewcode-back" href="https://lightgbm.readthedocs.io/en/latest/Python-API.html#lightgbm.LGBMRanker.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
+            <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">init_score</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">eval_set</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eval_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eval_sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">eval_init_score</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eval_group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eval_metric</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">eval_at</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">feature_name</span><span class="o">=</span><span class="s1">'auto'</span><span class="p">,</span> <span class="n">categorical_feature</span><span class="o">=</span><span class="s1">'auto'</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">"""Docstring is inherited from the LGBMModel."""</span>
+        <span class="c1"># check group data</span>
+        <span class="k">if</span> <span class="n">group</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Should set group for ranking task"</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">eval_set</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">eval_group</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Eval_group cannot be None when eval_set is not None"</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">eval_group</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">eval_set</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Length of eval_group should be equal to eval_set"</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">eval_group</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span>
+                  <span class="ow">and</span> <span class="nb">any</span><span class="p">(</span><span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">eval_group</span> <span class="ow">or</span> <span class="n">eval_group</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">range_</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">eval_group</span><span class="p">)))</span>
+                  <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">eval_group</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+                  <span class="ow">and</span> <span class="nb">any</span><span class="p">(</span><span class="n">group</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">eval_group</span><span class="p">)):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Should set group for all eval datasets for ranking task; "</span>
+                                 <span class="s2">"if you use dict, the index should start from 0"</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_eval_at</span> <span class="o">=</span> <span class="n">eval_at</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">LGBMRanker</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span>
+                                    <span class="n">init_score</span><span class="o">=</span><span class="n">init_score</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">,</span>
+                                    <span class="n">eval_set</span><span class="o">=</span><span class="n">eval_set</span><span class="p">,</span> <span class="n">eval_names</span><span class="o">=</span><span class="n">eval_names</span><span class="p">,</span>
+                                    <span class="n">eval_sample_weight</span><span class="o">=</span><span class="n">eval_sample_weight</span><span class="p">,</span>
+                                    <span class="n">eval_init_score</span><span class="o">=</span><span class="n">eval_init_score</span><span class="p">,</span> <span class="n">eval_group</span><span class="o">=</span><span class="n">eval_group</span><span class="p">,</span>
+                                    <span class="n">eval_metric</span><span class="o">=</span><span class="n">eval_metric</span><span class="p">,</span>
+                                    <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="n">early_stopping_rounds</span><span class="p">,</span>
+                                    <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span> <span class="n">feature_name</span><span class="o">=</span><span class="n">feature_name</span><span class="p">,</span>
+                                    <span class="n">categorical_feature</span><span class="o">=</span><span class="n">categorical_feature</span><span class="p">,</span>
+                                    <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+    <span class="n">_base_doc</span> <span class="o">=</span> <span class="n">LGBMModel</span><span class="o">.</span><span class="n">fit</span><span class="o">.</span><span class="vm">__doc__</span>
+    <span class="n">fit</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="p">(</span><span class="n">_base_doc</span><span class="p">[:</span><span class="n">_base_doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">'eval_class_weight :'</span><span class="p">)]</span>
+                   <span class="o">+</span> <span class="n">_base_doc</span><span class="p">[</span><span class="n">_base_doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">'eval_init_score :'</span><span class="p">):])</span>
+    <span class="n">_base_doc</span> <span class="o">=</span> <span class="n">fit</span><span class="o">.</span><span class="vm">__doc__</span>
+    <span class="n">_before_early_stop</span><span class="p">,</span> <span class="n">_early_stop</span><span class="p">,</span> <span class="n">_after_early_stop</span> <span class="o">=</span> <span class="n">_base_doc</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s1">'early_stopping_rounds :'</span><span class="p">)</span>
+    <span class="n">fit</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="p">(</span><span class="n">_before_early_stop</span>
+                   <span class="o">+</span> <span class="s1">'eval_at : list of int, optional (default=[1])</span><span class="se">\n</span><span class="s1">'</span>
+                   <span class="o">+</span> <span class="s1">' '</span> <span class="o">*</span> <span class="mi">12</span> <span class="o">+</span> <span class="s1">'The evaluation positions of the specified metric.</span><span class="se">\n</span><span class="s1">'</span>
+                   <span class="o">+</span> <span class="s1">' '</span> <span class="o">*</span> <span class="mi">8</span> <span class="o">+</span> <span class="n">_early_stop</span> <span class="o">+</span> <span class="n">_after_early_stop</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr><div><div id="rtd-0rnqe3ae" class="ethical-rtd"></div></div>
+
+  <div role="contentinfo">
+    <p>
+        © Copyright 2018, Microsoft Corporation
+      
+        <span class="commit">
+          Revision <code>fb28070e</code>.
+        </span>
+      
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: latest
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions"><!-- Inserted RTD Footer -->
+<div class="injected">
+
+  
+
+      
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+         <strong> 
+        <dd><a href="https://lightgbm.readthedocs.io/en/latest/_modules/lightgbm/sklearn.html">latest</a></dd>
+         </strong> 
+        
+      </dl>
+      
+      
+
+      
+      
+      <dl>
+        <dt>Downloads</dt>
+        
+        <dd><a href="https://readthedocs.org/projects/lightgbm/downloads/pdf/latest/">PDF</a></dd>
+        
+        <dd><a href="https://readthedocs.org/projects/lightgbm/downloads/htmlzip/latest/">HTML</a></dd>
+        
+        <dd><a href="https://readthedocs.org/projects/lightgbm/downloads/epub/latest/">Epub</a></dd>
+        
+      </dl>
+      
+      
+
+      
+      <dl>
+        <!-- These are kept as relative links for internal installs that are http -->
+        <dt>On Read the Docs</dt>
+        <dd>
+          <a href="https://readthedocs.org/projects/lightgbm/">Project Home</a>
+        </dd>
+        <dd>
+          <a href="https://readthedocs.org/projects/lightgbm/builds/">Builds</a>
+        </dd>
+        <dd>
+          <a href="https://readthedocs.org/projects/lightgbm/downloads/">Downloads</a>
+        </dd>
+      </dl>
+      
+
+      
+
+      
+      <dl>
+        <dt>On GitHub</dt>
+        <dd>
+          <a href="https://github.com/Microsoft/LightGBM/blob/master/docs/_modules/lightgbm/sklearn.rst">View</a>
+        </dd>
+        
+        <dd>
+          <a href="https://github.com/Microsoft/LightGBM/edit/master/docs/_modules/lightgbm/sklearn.rst">Edit</a>
+        </dd>
+        
+      </dl>
+      
+      
+
+      
+      <dl>
+        <dt>Search</dt>
+        <dd>
+          <div style="padding: 6px;">
+            <form id="flyout-search-form" class="wy-form" target="_blank" action="https://readthedocs.org/projects/lightgbm/search/" method="get">
+              <input type="text" name="q" placeholder="Search docs">
+              </form>
+          </div>
+        </dd>
+      </dl>
+      
+
+
+
+      <hr>
+      
+        <small>
+          <span>Hosted by <a href="https://readthedocs.org/">Read the Docs</a></span>
+          <span> · </span>
+          <a href="https://docs.readthedocs.io/en/latest/privacy-policy.html">Privacy Policy</a>
+        </small>
+      
+
+      
+
+</div>
+</div>
+  </div>
+
+
+
+  
+
+    
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../',
+              VERSION:'',
+              LANGUAGE:'en',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="./lightgbm.sklearn — LightGBM documentation_files/jquery.js"></script>
+        <script type="text/javascript" src="./lightgbm.sklearn — LightGBM documentation_files/underscore.js"></script>
+        <script type="text/javascript" src="./lightgbm.sklearn — LightGBM documentation_files/doctools.js"></script>
+        <script type="text/javascript" src="./lightgbm.sklearn — LightGBM documentation_files/script.js"></script>
+        <script type="text/javascript" src="./lightgbm.sklearn — LightGBM documentation_files/readthedocs-doc-embed.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="./lightgbm.sklearn — LightGBM documentation_files/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+
+</body></html>
